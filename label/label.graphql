@@ -1,0 +1,85 @@
+"""
+标签组:
+"""
+type LabelGroup {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  "标签组别代码:最大长度:30"
+  code: String! @unique
+  "标签组名称:最大长度:100"
+  name: String! @unique
+  "标签组名称_英文:最大长度:100"
+  nameEN: String! @unique
+  "描述:最大长度:200"
+  desc: String
+
+  "属于该组的标签"
+  labels: [Label!]
+}
+
+"""
+标签:
+"""
+type Label {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  "标签代码:最大长度:30"
+  code: String! @unique
+  "标签名称:最大长度:100"
+  name: String! @unique
+  "描述:最大长度:200"
+  desc: String
+  "ZPL内容,最大长度:60000"
+  zpl: String!
+  "是否默认标签模板:一个标签组只能有有一个默认标签模板"
+  isDefault: Boolean @default(value: false)
+
+  "标签所属的组"
+  labelGroup: LabelGroup!
+}
+
+"""
+打标历史记录:
+"""
+type LabelPrintHistory {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "操作员,最大长度:30"
+  operator: String!
+  "工作中心,最大长度:30"
+  workCenter: Json!
+  "工站,最大长度:30"
+  workStation: Json!
+  "标签组别代码:最大长度:30"
+  labelGroupCode: String!
+  "标签代码:最大长度:30"
+  labelCode: String!
+
+  "序列号,最大长度:60"
+  sn: String
+  "ZPL内容,最大长度:60000"
+  zpl: String!
+}
