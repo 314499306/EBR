@@ -1,0 +1,1330 @@
+{
+  "system": {
+    "name": "<span class='special'>H</span><span>olliEBR</span>",
+    "company": "Beijing Hollysys intelligent technology Co., Ltd",
+    "version": "1.0.0",
+    "copyright": "All Right Reserved",
+    "router": {
+      "routeComponentFailure": "Navigation error,load component failed.",
+      "routeFailure": "Navigation error,please try again later or contact your administrator."
+    },
+    "menu": {
+      "menuitems": "Menu item",
+      "upgrade": "Upgrade",
+      "upgradeFailure": "Upgrade failed, please click the refresh button above and try again later.",
+      "degrade": "Degrade",
+      "degradeFailure": "Degrade failed, please click the refresh button above and try again later.",
+      "downward": "Down",
+      "downwardFailure": "Move down failed, please click the refresh button above and try again later.",
+      "upward": "Up",
+      "upwardFailure": "Move up failed, please click the refresh button above and try again later.",
+      "removeDisable": "The deletion of root node or parent node is not allowed.",
+      "removeFailure": "Delete failed, please click the refresh button above and try again later.",
+      "removeFail": "Delete failed, this menu item has been used by authority management.",
+      "enable": "Enable",
+      "disable": "Disable",
+      "state": "State",
+      "type": "Type",
+      "internal": "Internal function",
+      "internalLink": "Internal link",
+      "external": "External link",
+      "externalPopup": "External Link(POP up new windows)",
+      "code": "Code",
+      "codePlaceholder": "Global unique code, start with letter, only support English letters(lowercase) and numbers.",
+      "name": "Name",
+      "namePlaceholder": "Menu name, will be enabled when multilingual invalid",
+      "i18N": "Multi-language",
+      "i18NPlaceholder": "Multi-language flag, navigation menu priority to use this",
+      "i18NUndefine": "Undefined",
+      "icon": "Icon",
+      "iconPlaceholder": "Please select the icon",
+      "componentPath": "Component path",
+      "componentPathPlaceholder": "Component path, e.g.: the welcome represents /src/views/welcome component",
+      "url": "URL",
+      "urlPlaceholder": "URL, e.g.: www.hollysys.com",
+      "description": "Description",
+      "descriptionPlaceholder": "Please input",
+      "levelRule": "Maximum menu level: {maxLevel}.",
+      "tips": "Operation on the first level menu is not allowed; Maximum menu level: {maxLevel}.",
+      "plsSave": "Please save first.",
+      "notAllowUpgrade": "No upgrading allowed",
+      "notAllowDegrade": "No degrading allowed",
+      "isFirstChild": "The first one",
+      "isLastChild": "The last one",
+      "rules": {
+        "code": "Mandatory field, 1-20 alphanumeric characters without Chinese characters.",
+        "name": "Mandatory field, 1-20 alphanumeric characters or Chinese characters.",
+        "url": "Please input the (URL or component) address"
+      }
+    },
+    "dictionary": {
+      "label": "Show content",
+      "value": "Code",
+      "groupCode": "Group code",
+      "orderNo": "Seq.",
+      "messages": {
+        "uniqueGroupCodeAndValue": "Unique constraint: @:system.dictionary.groupCode : {groupCode}, @:system.dictionary.value : {value} already exists."
+      }
+    },
+    "usergroup": {
+      "title": "User group",
+      "code": "Code",
+      "name": "Name",
+      "userlist": "User list",
+      "hasUsers": "Can not delete,The current user group contains {count} users.",
+      "messages": {
+        "uniqueCode": "{code} already exists",
+        "uniqueName": "{name} already exists",
+        "codeRule": "Please input 4-10 alphanumeric, _, - .",
+        "nameRule": "Please input 4-20 alphanumeric or Chinese characters."
+      }
+    },
+    "signGroup": {
+      "title": "Signature policy",
+      "description": "Description",
+      "name": "Name",
+      "signPermission": "Signature permission"
+    },
+    "signPermission": {
+      "module": "Module",
+      "field": "Field",
+      "method": "Method",
+      "customMethod": "Custom method",
+      "customField": "Custom field",
+      "message": {
+        "uniqueModule": "Unique constraint. @:system.signPermission.module: {module} already exists."
+      }
+    },
+    "signRule": {
+      "name": "Rule name",
+      "category": "Category",
+      "value": "Rule value",
+      "action": "Action",
+      "group": "Signature group",
+      "description": "Description"
+    },
+    "permission": {
+      "selectedUsers": "Selected user",
+      "title": "Permission",
+      "plsSelectUserGroup": "Please select user group"
+    },
+    "dataPermission": {
+      "query": "Query",
+      "mutate": "Mutation",
+      "empty": "No data permissions need to config",
+      "queries": {
+        "users": "Users",
+        "usersConnection": "User connections",
+        "persons": "Persons",
+        "personsConnection": "Person connections"
+      },
+      "mutations": {
+        "deleteManyUsers": "Batch delete user",
+        "deleteManyPersons": "Batch delete person"
+      },
+      "fields": {
+        "person": "Person",
+        "organize": "Organization"
+      },
+      "modules": {
+        "base": "Base module(base)",
+        "system": "System module(system)",
+        "product": "Product module(product)"
+      }
+    },
+    "modifyPwd": {
+      "username": "Name",
+      "oldPwd": "Old password",
+      "newPwd": "New password",
+      "confirmNewPwd": "Confirm password",
+      "messages": {
+        "plsInputOldPwd": "Please input your old password.",
+        "plsInputNewPwd": "Please input your new password.",
+        "plsInputNewPwd1": "Please input your new password again.",
+        "newPwdNotMatch": "The passwords are not the same!",
+        "success": "Password changed successfully.",
+        "failure": "Password changed failed",
+        "oldPwdIncorrect": "The old password is incorrect.",
+        "oldPwdEqualNewPwd": "The old and new passwords can't be the same."
+      }
+    },
+    "userManager": {
+      "resetPassword": "Activate/Reset",
+      "userName": "Name",
+      "email": "Email",
+      "role": "Role",
+      "group": "User group",
+      "person": "Person",
+      "remark": "Remark",
+      "rules": {
+        "email": "Please input the email, e.g.:name@example.com",
+        "name": "User name should start with letters, 4-20 alphanumeric(lowercase).",
+        "nameExist": "already exsits",
+        "role": "Please select the role",
+        "person": "Please select the person",
+        "group": "Please select the user group"
+      },
+      "noPersons": "No person available, please add person first.",
+      "resetPasswordSuccess": "Reset password successfully",
+      "resetPasswordFailure": "Reset password failed"
+    },
+    "organize": {
+      "title": "Organization",
+      "name": "Organization name",
+      "code": "Organization code",
+      "type": "Organization type",
+      "parent": "Parent level",
+      "messages": {
+        "uniqueGroupCodeAndValue": "Unique constraint. @:system.organize.code : {code} already exists.",
+        "notMatch": "The selected type mismatches its parent type, please re-select."
+      }
+    },
+    "person": {
+      "title": "Person",
+      "userName": "Name",
+      "sex": "Sex",
+      "code": "Code",
+      "organize": "Organization",
+      "birthday": "Birthday",
+      "name": "Name",
+      "remark": "Description",
+      "male": "Male",
+      "female": "Female",
+      "unknow": "Unkonw"
+    },
+    "workStation": {
+      "code": "Code",
+      "name": "Name",
+      "workCenter": "Work center",
+      "device": "External device",
+      "description": "Description",
+      "createdAt": "Creation time",
+      "updatedAt": "Modification time",
+      "messages": {
+        "uniqueCodeAndName": "Unique constraint. @:system.workStation.code: {code}, @system.workStation.name: {name} already exists."
+      }
+    },
+    "workCenter": {
+      "location": "Location",
+      "workStation": "Work station"
+    },
+    "device": {
+      "deviceType": "Device type",
+      "weight": "Balance",
+      "band": "Band",
+      "printer": "Printer",
+      "address": "Address",
+      "status": "Status",
+      "register": "Register",
+      "unregister": "Unregister",
+      "online": "Online",
+      "offline": "Offline"
+    }
+  },
+  "common": {
+    "enums": {
+      "menuType": {
+        "INTERNAL": "@:schema.enums.MenuType.INTERNAL",
+        "INTERNALLINK": "@:schema.enums.MenuType.INTERNALLINK",
+        "EXTERNAL": "@:schema.enums.MenuType.EXTERNAL",
+        "EXTERNALPOPUP": "@:schema.enums.MenuType.EXTERNALPOPUP"
+      },
+      "roleType": {
+        "ADMIN": "@:schema.enums.Role.ADMIN",
+        "SYSTEM": "@:schema.enums.Role.SYSTEM",
+        "USER": "@:schema.enums.Role.USER"
+      },
+      "organizeType": {
+        "GROUP": "@:schema.enums.OrganizeType.GROUP",
+        "COMPANY": "@:schema.enums.OrganizeType.COMPANY",
+        "DEPARTMENT": "@:schema.enums.OrganizeType.DEPARTMENT"
+      }
+    },
+    "messages": {
+      "dataIntegrityError": "The referenced data is not allowed to be deleted.",
+      "confirmMessage": "Please confirm",
+      "dataNumLimit": "The max NO of data rows is 3",
+      "errorMessage": "Operation error, please try again later or contact your administrator",
+      "deleteConfirm": "Not recoverable after deletion, Please confirm this delete operation?",
+      "cancelEditConfirm": "Changes are lost after cancellation, Please confirm this cancel operation?",
+      "terminationConfirm": "Not recoverable after termination, Please confirm this terminate operation? ",
+      "closeConfirm": "Not recoverable after close, Please confirm this close operation?",
+      "cancelConfirm": "Not recoverable after cancellation, Please confirm this cancel operation?",
+      "tips": "Tips",
+      "step": "Step",
+      "saveSuccess": "Save successfully",
+      "saveFailure": "Save failed",
+      "removeSuccess": "Delete successfully",
+      "removeFailure": "Delete failed",
+      "calibrationSuccess": "Calibrate successfully",
+      "calibrationFailure": "Calibrate failed",
+      "forcedWeighingSuccess": "Forced weighing successfully",
+      "forcedWeighingFailure": "Forced weighing failed",
+      "verificationSuccess": "Validate successfully",
+      "verificationFailure": "Validate failed",
+      "cancelCalibrationSuccess": "Calibration cancelled successfully",
+      "cancelCalibrationFailure": "Calibration cancelled failed",
+      "plsSelectRow": "Please select row",
+      "plsSelectOrgan": "Please select organization",
+      "alreadyExist": "already exists",
+      "validateError": "Validation Error, please try again later",
+      "getPermissionActionsFailure": "Get permission failed, the specified function cannot be accessed temporarily, please try again later",
+      "networkFailure": "Network error",
+      "empty": "No data",
+      "refresh_success": "Refresh successfully",
+      "refresh_fail": "Refresh failed",
+      "delete_warn": "Delete group type is not allowed",
+      "edit_warn": "Edit group type is not allowed",
+      "remove_warn": "This node contains child nodes, please remove child nodes first",
+      "open": "Y",
+      "close": "N",
+      "checkTips": "Calibrations(this level and below) will be cleared. Please confirm this selection?",
+      "illegalCharacter": "Invalid characters found, please add correct data"
+    },
+    "buttons": {
+      "ok": "OK",
+      "cancel": "Cancel",
+      "close": "Close",
+      "reset": "Reset",
+      "save": "Save",
+      "submit": "Submit"
+    },
+    "labels": {
+      "rowIndex": "#",
+      "createdAt": "Creation time",
+      "updatedAt": "Modification time",
+      "description": "Description"
+    },
+    "loading": "Loading...",
+    "fullScreen": "Full screen",
+    "fullScreenExit": "Exit full screen",
+    "sidebarCollapsed": "Collapsed sidebar",
+    "sidebarExpand": "Expand sidebar",
+    "refresh": "@:common.actions.refresh",
+    "profile": "Personal setting",
+    "lock": "Lock",
+    "modifyPassword": "Change password",
+    "signout": "Logout",
+    "add": "@:common.actions.add",
+    "delete": "@:common.actions.remove",
+    "edit": "@:common.actions.edit",
+    "save": "@:common.buttons.save",
+    "reset": "@:common.buttons.reset",
+    "cancel": "@:common.buttons.cancel",
+    "close": "@:common.buttons.close",
+    "deleteConfirm": "@:common.messages.deleteConfirm",
+    "tips": "@:common.messages.tips",
+    "saveSuccess": "@:common.messages.saveSuccess",
+    "saveFailure": "@:common.messages.saveFailure",
+    "removeSuccess": "@:common.messages.removeSuccess",
+    "removeFailure": "@:common.messages.removeFailure",
+    "lines": "Lines",
+    "de": "Total",
+    "actions": {
+      "add": "Add {name}",
+      "remove": "Remove",
+      "edit": "Edit {name}",
+      "import": "Import",
+      "export": "Export",
+      "upload": "Upload",
+      "download": "Download",
+      "print": "Print",
+      "refresh": "Refresh",
+      "checkedAll": "Select all",
+      "uncheckedAll": "Unselect all",
+      "expandAll": "Expand all",
+      "collapsedAll": "Collapse all",
+      "start": "Start",
+      "stop": "Stop",
+      "finish": "Finish",
+      "pause": "Pause",
+      "continue": "Continue",
+      "forward": "Forward",
+      "backward": "Backward",
+      "move": "Move",
+      "redo": "Redo",
+      "undo": "Undo",
+      "reset": "Reset",
+      "copy": "Copy",
+      "upCopy": "Revise",
+      "commit": "Commit",
+      "allow": "Approve",
+      "withdraw": "Reverse",
+      "Verification": "Validation",
+      "correct": "Revise",
+      "release": "Release",
+      "undoRelease": "Unrelease",
+      "cancel": "Cancel",
+      "termination": "Terminate",
+      "close": "Close",
+      "Printing": "Print",
+      "save": "Save",
+      "inputCertificate": "Input certificate",
+      "calibration": "Calibrate",
+      "cancelCalibration": "Cancel the calibration",
+      "cancelWeighing": "Cancel the weighing",
+      "palletLabel": "Pallet label",
+      "forcedWeighing": "Forced weighing",
+      "reprintLabel": "Label reprint",
+      "see": "View"
+    },
+    "placeholders": {
+      "plsInput": "Please input",
+      "plsSelect": "Please select",
+      "beginDate": "Start date",
+      "endDate": "End date",
+      "to": "To",
+      "preset": "Preset",
+      "selectWorkStation": "Select work station",
+      "selectMaterial": "Select material",
+      "selectFormula": "Select formula",
+      "selectWorkOrder": "Select WO",
+      "selectBalance": "Select balance",
+      "selectMiInfo": "Select MI",
+      "selectPoise": "Select weight",
+      "presetLast7Days": "Last 7 days",
+      "presetLast1Month": "Last month",
+      "presetLast3Month": "Last 3 months",
+      "presetLast6Month": "Last 6 months",
+      "presetLast1Year": "Last year",
+      "presetLast2Year": "Last 2 year"
+    },
+    "rules": {
+      "validateFailure": "Please follow the format",
+      "plsInput": "Please input",
+      "plsSelect": "Please select",
+      "length": "Please input  {min} to {max} characters",
+      "lessThan": "Less than {num}",
+      "moreThan": "More than {num}",
+      "equalTo": "Equal to {num}",
+      "BetweenCount": "Please input an integer greater than 0 and less than 10",
+      "gtCount": "Please input a number greater than 0",
+      "gtinteger": "Please input an integer greater than 0"
+    }
+  },
+  "user": {
+    "title": "User information",
+    "pwdtitle": "Reset password",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "group": "Group",
+    "person": "Person",
+    "remark": "Remark",
+    "passwork": "New password",
+    "passwdcheck": "Confirm new password",
+    "placeholder": {
+      "search": "Please input name...",
+      "name": "Please input user name...",
+      "email": "Please input email...",
+      "remark": "Please input remark information...",
+      "passwork": "Please input new password...",
+      "passwdcheck": "Please input new password again..."
+    }
+  },
+  "person": {
+    "title": "Person",
+    "organizename": "Organization",
+    "createdAt": "Creation time",
+    "userName": "User name",
+    "sex": "Sex",
+    "code": "Code",
+    "organize": "Organization",
+    "birthday": "Birthday",
+    "name": "Name",
+    "remark": "Remark",
+    "male": "Male",
+    "female": "Female",
+    "placeholder": {
+      "name": "Please input name...",
+      "organizes": "Please select organization...",
+      "code": "Please input employee code..."
+    },
+    "unknow": "Unknow"
+  },
+  "workStation": {
+    "code": "Code",
+    "name": "Name",
+    "workCenter": "Work center",
+    "device": "External device",
+    "description": "Description",
+    "createdAt": "Creation time",
+    "updatedAt": "Modification time",
+    "messages": {
+      "uniqueCodeAndName": "Unique constraint. @:system.workStation.code: {code}, @system.workStation.name: {name} already exists."
+    }
+  },
+  "workCenter": {
+    "location": "Location",
+    "workStation": "Work station"
+  },
+  "mi": {
+    "mi-excute-title": "MI process execution",
+    "mi-subflow-title": "Subflow",
+    "name-undefined": "Found unnamed node in this process flow. Please correct it and regenerate the flowchart"
+  },
+  "device": {
+    "deviceType": "Device type",
+    "weight": "Balance",
+    "band": "Band",
+    "printer": "Printer",
+    "address": "Address",
+    "status": "Status",
+    "register": "Register",
+    "unregister": "Unregister",
+    "online": "Online",
+    "offline": "Offline"
+  },
+  "organizes": {
+    "title": "Organization",
+    "name": "Name",
+    "code": "Code",
+    "type": "Type",
+    "parent": "Parent level",
+    "placeholder": {
+      "name": "Please input organization Name...",
+      "code": "Please input organization code...",
+      "parent": "Please input parent level..."
+    }
+  },
+  "menus": {
+    "unknow": "Unknow",
+    "system": {
+      "title": "System settings",
+      "user": "User management",
+      "role": "Authorization",
+      "menus": "Menu settings",
+      "welcome": "Welcome",
+      "usergroup": "User group"
+    },
+    "home": "Home",
+    "welcome": "Welcome"
+  },
+  "login": {
+    "username": "Please input name",
+    "password": "Please input password",
+    "signin": "Login",
+    "title": "Login HolliEBR",
+    "incorrectUsername": "Invalid user name.",
+    "incorrectPassword": "Invalid password.",
+    "incorrectWorkStation": "Invalid work station",
+    "incorrectUsernameOrPassword": "Invalid name or password \n can retry {times} times.",
+    "loginLocked": "Logon locked {minutes} minute",
+    "loginFailure": "Incomplete user information.",
+    "overtime": "Login timeout,Please login again.",
+    "lockedTitle": "Screen locked",
+    "lockedBottom": "Screen locked, Please input the password to unlock",
+    "lockedNotThrough": "Verification failed",
+    "loginVerificationCodeErr": "Verification code error",
+    "loginStoLoginInfoErr": "Store login information error",
+    "lockedCurrentUser": "Please input the current user",
+    "incorrectPasswordErr": "Invalid password",
+    "noPermission": "Permission denied,Please swith another account",
+    "getUserInfoFailure": "Fail to get user info"
+  },
+  "agGrid": {
+    "page": "",
+    "more": "more...",
+    "to": "-",
+    "of": "/",
+    "next": "Next",
+    "last": "Last",
+    "first": "First",
+    "previous": "Previous",
+    "loadingOoo": "@:common.loading",
+    "selectAll": "Select all",
+    "searchOoo": "Search...",
+    "blanks": "Blank",
+    "filterOoo": "Filter condition...",
+    "applyFilter": "Apply",
+    "clearFilter": "Clear",
+    "equals": "Equal to",
+    "notEqual": "Not equal to",
+    "lessThan": "Less than",
+    "lessThanOrEqual": "Less than or equal to",
+    "greaterThan": "Greater Than",
+    "greaterThanOrEqual": "Greater than or equal to",
+    "inRange": "Range",
+    "contains": "Contain",
+    "notContains": "Not contain",
+    "startsWith": "Start with",
+    "endsWith": "End with",
+    "group": "Group",
+    "columns": "column",
+    "rowGroupColumns": "Pivot column",
+    "rowGroupColumnsEmptyMessage": "Drag column to group",
+    "valueColumns": "Value column",
+    "pivotMode": "Pivot mode",
+    "groups": "Group",
+    "values": "Aggregation",
+    "pivots": "Pivot",
+    "valueColumnsEmptyMessage": "Drag column to aggregate",
+    "pivotColumnsEmptyMessage": "Drag column to pivot",
+    "toolPanelButton": "Toolbox",
+    "noRowsToShow": "@:common.messages.empty",
+    "pinColumn": "Pin column",
+    "valueAggregation": "Aggregation value",
+    "autosizeThiscolumn": "Adaptive width",
+    "autosizeAllColumns": "Adaptive width(all columns)",
+    "groupBy": "Group by",
+    "ungroupBy": "Ungroup",
+    "resetColumns": "Reset column",
+    "expandAll": "Expand all",
+    "collapseAll": "Collapse all",
+    "toolPanel": "Tool panel",
+    "export": "Export",
+    "csvExport": "Export in CSV format",
+    "excelExport": "Export in Excel format",
+    "pinLeft": "Pin left",
+    "pinRight": "Pin right",
+    "noPin": "Unpin",
+    "sum": "Sum",
+    "min": "Min",
+    "max": "Max",
+    "none": "None",
+    "count": "Count",
+    "average": "Average",
+    "copy": "Copy",
+    "copyWithHeaders": "Copy with header",
+    "ctrlC": "CTRL + C",
+    "paste": "Paste",
+    "ctrlV": "CTRL + V",
+    "filters": "Filter"
+  },
+  "product": {
+    "material": {
+      "id": "ID",
+      "code": "Material code",
+      "name": "Material name",
+      "description": "Description",
+      "type": "Material type",
+      "number": "Size",
+      "unit": "Unit",
+      "createdAt": "Creation time"
+    },
+    "site": {
+      "code": "Code",
+      "name": "Name",
+      "description": "Description",
+      "createdAt": "Creation time",
+      "updateAt": "Modification time"
+    },
+    "depot": {
+      "code": "Code",
+      "name": "Name",
+      "site": "Site",
+      "description": "Description",
+      "createdAt": "Creation time",
+      "updateAt": "Modification time"
+    },
+    "location": {
+      "id": "ID",
+      "code": "Code",
+      "name": "Name",
+      "description": "Description",
+      "area": "Area",
+      "site": "Site",
+      "createdAt": "Creation time",
+      "updateAt": "Modification time"
+    },
+    "workOrder": {
+      "workOrder": "Work order",
+      "version": "Version",
+      "productCode": "Product code",
+      "productName": "Product name",
+      "status": "Status",
+      "stability": "Stability",
+      "orderWorkCenters": "Work center",
+      "lotNo": "Lot",
+      "lotRank": "Lot rank",
+      "releaseDate": "Launch time",
+      "priority": "Priority",
+      "erpSendDate": "ERP send time",
+      "equivalentWeigh": "Weight equivalent",
+      "qty": "Qty",
+      "unit": "Unit",
+      "miCode": "MI code",
+      "miVersion": "MI version",
+      "orderFormulaMap": "WO formula mapping",
+      "orderCategoryType": "WO category",
+      "miMessage": "This WO cannot be unluanched, MI has been executing",
+      "message": "Remark",
+      "Verification": "The formula of this WO is not validated",
+      "allow": "The formula of this WO is not approved",
+      "OrderFormulaMap": {
+        "formulaCode": "Formula code",
+        "formulaName": "Formula name",
+        "formulaType": "Formula type",
+        "formulaVersion": "Formula version",
+        "beginValidDate": "Start of Validity",
+        "endValidDate": "End of Validity",
+        "ValidDate": "Validity",
+        "Quantity": "Ref.quantity",
+        "Equivalent": "Weight quantity",
+        "refQuantityUnit": "Ref.unit",
+        "weightEquivalent": "Weight equivalent",
+        "weightEquivalentUnit": "Weight unit",
+        "unitType": "Formula unit type",
+        "unit": "Unit"
+      },
+      "materialInfo": "Material",
+      "formulaTypeArr": {
+        "T": "Test/Development",
+        "M": "Manufacturing/Clinical"
+      },
+      "orderCategory": {
+        "D": "Direct WO",
+        "F": "Formula WO",
+        "X": "ERP WO",
+        "S": "Specific output "
+      },
+      "orderFormula": "Specify formula",
+      "orderMaterials": {
+        "materialCode": "Material code",
+        "materialName": "Material name",
+        "totalStdQty": "Std.Qty",
+        "unit": "Unit",
+        "isFixedQty": "Fixed Qty",
+        "phase": "Phase",
+        "step": "Step",
+        "dosage": "Dose",
+        "isUniqueLot": "Fixed lot",
+        "isPotency": "Potency use",
+        "isWeightingWeight": "W.in weighting",
+        "isMfgWeight": "W.in MFG",
+        "isPackWeight": "W.in packing",
+        "compensateur": "Compensator type",
+        "tolerance": "Tolerance",
+        "workCenter": "Work center",
+        "weighStatus": "Status",
+        "WeightMode": "Weighing Mode",
+        "WeightUnit": "Weighing unit",
+        "qty": "Qty",
+        "isCompensateur": "Compensator",
+        "IsPotency": "Potency use",
+        "language": "Language",
+        "lotRank": "Reconciliation status",
+        "isTrue": {
+          "true": "Y",
+          "false": "N"
+        },
+        "isCompensateurArr": {
+          "N": "Not a Compensator",
+          "Y": "Compensator for Potency",
+          "X": "Compensator for WO weight"
+        }
+      }
+    },
+    "labelManager": {
+      "labelGroup": "Label group",
+      "code": "Code",
+      "filterAccording": "Filter condition",
+      "name": "Name",
+      "desc": "Description",
+      "zpl": "ZPL",
+      "createdAt": "Creation time",
+      "updatedAt": "Modification time",
+      "createUser": "Creator",
+      "updateUser": "Modifier",
+      "codeRequired": "Mandatory field: code",
+      "nameRequired": "Mandatory field: name",
+      "labelGroupRequired": "Mandatory field: label group",
+      "zplRequired": "Mandatory field: ZPL",
+      "codeExists": "Label code {code} already exists, please input again",
+      "nameExists": "Label name {name} already exists, please input again"
+    },
+    "miManager": {
+      "upgrade": "Upgrade",
+      "code": "MI code",
+      "version": "Version",
+      "group": "Group",
+      "type": "Type",
+      "status": "Status",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "codeRules": "Mandatory field: MI code",
+      "versionRules": "Mandatory field: version",
+      "groupRules": "Mandatory field: group",
+      "typeRules": "Mandatory field: type",
+      "statusRules": "Mandatory field: status",
+      "startDateRules": "Mandatory field: start date",
+      "endDateRules": "Mandatory field: end date",
+      "codeVersionExists": "Code {code} already exists, system has upgraded the version automatically, please click ok again",
+      "upgradeSuccess": "Upgrade successfully",
+      "upgradeFailure": "Upgrade failed",
+      "versionUpgrade": "Upgrade version",
+      "versionUpgradeMessage": "Confirm to upgrade?"
+    }
+  },
+  "message": "Hello multi-language!!!!~",
+  "environment": "Environment variable",
+  "changeLocale": "Please select the language",
+  "welcome": "Welcome HolliEBR",
+  "$vuetify": {
+    "dataIterator": {
+      "rowsPerPageText": "Rows per page",
+      "rowsPerPageAll": "All page",
+      "pageText": "{0}-{1} total {2} rows",
+      "noResultsText": "No matching record found",
+      "nextPage": "Next page",
+      "prevPage": "Previous page"
+    },
+    "dataTable": {
+      "rowsPerPageText": "Rows per page"
+    },
+    "noDataText": "No data",
+    "carousel": {
+      "prev": "Previous vision",
+      "next": "Next vision"
+    }
+  },
+  "noPermission": {
+    "reprePage": "Back to previous"
+  },
+  "schema": {
+    "enums": {
+      "MenuType": {
+        "INTERNAL": "Internal function",
+        "INTERNALLINK": "Internal link",
+        "EXTERNAL": "External link",
+        "EXTERNALPOPUP": "External link(POP up new windows)"
+      },
+      "Role": {
+        "ADMIN": "Super administrator",
+        "SYSTEM": "System administrator",
+        "USER": "Common user"
+      },
+      "OrganizeType": {
+        "GROUP": "Group",
+        "COMPANY": "Company",
+        "DEPARTMENT": "Department"
+      },
+      "DictionaryType": {
+        "HPP": "Hazard precaution pictograms",
+        "EBR_UNIT": "EBR unit",
+        "MASS_UNIT": "Mass unit",
+        "UINT_UNIT": "Count unit",
+        "BPS": "BPS",
+        "DATA_BIT": "Data bits",
+        "END_BIT": "End bits"
+      },
+      "ValidityUnit": {
+        "M": "Month",
+        "D": "Day"
+      },
+      "ShelfLifeUnit": {
+        "MONTH": "Month",
+        "DAY": "Day",
+        "HOUR": "Hour",
+        "MIN": "Minute"
+      },
+      "FormulaType": {
+        "T": "Test/Development",
+        "M": "Manufacturing/Clinical"
+      },
+      "FormulaStatus": {
+        "M": "Modifiable",
+        "T": "Terminated",
+        "A": "Approved",
+        "V": "Validated",
+        "O": "Obsolete"
+      },
+      "FormulaUnitType": {
+        "Q": "Quantitative",
+        "U": "Unitary"
+      },
+      "CompensateurType": {
+        "N": "Not a Compensator",
+        "Y": "Compensator for Potency",
+        "X": "Compensator for WO weight"
+      },
+      "MaterialListType": {
+        "U": "Unlisted",
+        "I": "List I",
+        "II": "List II",
+        "S": "Stupefacient",
+        "P": "Psychotropic drug",
+        "X": "Stupefacient & Psychotropic drug"
+      },
+      "MaterialType": {
+        "RAW": "Raw Material",
+        "HALF": "Half-Finished Product",
+        "PACK": "Packing Item",
+        "FINISHED": "Finished Product"
+      },
+      "MaterialStatus": {
+        "M": "Modifiable",
+        "V": "Validated",
+        "O": "Obsolete"
+      },
+      "PotencyType1": {
+        "N": "Not potent",
+        "P": "%",
+        "L": "μg/mg",
+        "U": "IU/mg",
+        "M": "MIU/g",
+        "R": "μg/ml",
+        "S": "mg/ml",
+        "T": "IU/ml",
+        "V": "IU/g"
+      },
+      "PotencyType2": {
+        "N": "No weighing unit",
+        "K": "Weighing unit kg",
+        "G": "Weighing unit g",
+        "M": "Weighing unit mg"
+      },
+      "LotStatus": {
+        "QUARANTINE": "Auarantine",
+        "APPROVED": "Approved",
+        "CONDITIONALLY_APPROVED": "Approved(conditionally)",
+        "TEST": "Test",
+        "HOLD": "Hold",
+        "REJECTED": "Rejected",
+        "OBSOLETE": "Obsolete"
+      },
+      "LotSampleStatus": {
+        "TO_BE_SAMPLED": "To be sampled",
+        "SAMPLING": "Sampling",
+        "SAMPLED": "Sampled",
+        "TO_BE_RESAMPLED": "To be Resampled"
+      },
+      "ABCCode": {
+        "A": "A",
+        "B": "B",
+        "C": "C"
+      },
+      "SampleLabelType": {
+        "P": "Pallet label",
+        "C": "Container label"
+      },
+      "GHSWord": {
+        "E": "EMPTY",
+        "W": "WARNING",
+        "D": "DANGER"
+      },
+      "WeightMode": {
+        "NET": "Net",
+        "GROSS": "Gross",
+        "LURE_GROSS": "Lure gross",
+        "UNPACKING": "Unpacking",
+        "MANUAL_INPUT": "Manual input",
+        "FORCED_INPUT": "Forced input",
+        "RM_MIX": "RM Mix",
+        "RECORDED_TARE": "Recorded tare",
+        "SUBTRACT": "Subtract",
+        "DOUBLE": "Double",
+        "AUTOMATIC": "Automatic",
+        "LASER": "Laser",
+        "CYLINDER": "Cylinder",
+        "PALLET": "Pallet",
+        "COUNTING": "Counting",
+        "SG_FG": "SG-FG"
+      },
+      "BalanceType": {
+        "A": "METTLER ID30",
+        "B": "BIZERBA",
+        "C": "METTLER SICS",
+        "I": "SARTORIUS",
+        "M": "METTLER",
+        "S": "METTLER SICS",
+        "Y": "SARTORIUS_MULTI",
+        "R": "PRECIA SLAVE",
+        "T": "TOLEDO",
+        "P": "PRECIA RUBIS",
+        "X": "METTLER_MULTI",
+        "D": "METTLER_MULTI SICS",
+        "E": "METTLER_MULTI SICS 2",
+        "N": "METTLER IND780",
+        "O": "METTLER IND780 SICS 2"
+      },
+      "OrderCategory": {
+        "D": "Direct WO",
+        "F": "Formula WO",
+        "X": "ERP WO",
+        "S": "Specific output "
+      },
+      "OrderType": {
+        "W": "Weighing phase",
+        "M": "MFG phase",
+        "P": "Packing phase",
+        "O": "Other phase"
+      },
+      "OrderStatus": {
+        "M": "Modifiable",
+        "L": "Launched",
+        "I": "WIP",
+        "T": "Terminated",
+        "C": "Closed",
+        "A": "Archived",
+        "D": "Deleted"
+      },
+      "ActionState": {
+        "A": "To reconcile",
+        "B": "Locked by the WorkFlow",
+        "N": "Not reconcilable",
+        "R": "Reconciled"
+      },
+      "HazardPreventionLanguage": {
+        "ZH_CN": "Chinese",
+        "EN_US": "English(US)"
+      },
+      "BalanceCategory": {
+        "B": "Scale",
+        "S": "Floor scale"
+      },
+      "ConnectionType": {
+        "ETH": "Ethernet",
+        "COM": "COM"
+      },
+      "ProtocolType": {
+        "TCP": "TCP",
+        "UDP": "UDP"
+      },
+      "CalibrationType": {
+        "A": "Daily",
+        "E": "Weekly",
+        "I": "Bimonthly",
+        "M": "Monthly",
+        "T": "Quarterly",
+        "X": "Biannually",
+        "L": "Yearly"
+      },
+      "CleanType": {
+        "W": "By WO",
+        "M": "By material"
+      },
+      "FlowControlType": {
+        "N": "None",
+        "X": "XON/XOFF",
+        "C": "RTS/CTS"
+      },
+      "CheckType": {
+        "N": "None",
+        "E": "Even",
+        "O": "Odd"
+      },
+      "CalibrationTimeUnit": {
+        "M": "Minute",
+        "D": "Day"
+      },
+      "WeighStatus": {
+        "N": "Non weighable",
+        "W": "Weighable",
+        "P": "Weighing in progress",
+        "T": "Weighing terminated"
+      }
+    },
+    "product": {
+      "calibration": {
+        "balanceCategory": "Balance",
+        "calibrationType": "Calibration type",
+        "effection": "Validity",
+        "tolerance": "Tolerance",
+        "calibrationNumber": "Weighing Number",
+        "isMultiCalibration": "Muti range calibration",
+        "isDifferentWeigh": "Different weights",
+        "step": "Step",
+        "effectType": {
+          "A": "1 day(s)",
+          "E": "7 day(s)",
+          "I": "14 day(s)",
+          "M": "1 month(s)",
+          "T": "3 month(s)",
+          "X": "6 month(s)",
+          "L": "12 month(s)"
+        }
+      },
+      "weights": {
+        "poise": "Weight",
+        "weight": "Weight mass",
+        "unit": "Unit"
+      },
+      "balanceCleanSetting": {
+        "site": "Site",
+        "ruleType": "Rule type",
+        "code": "Rule code",
+        "name": "Rule name"
+      },
+      "balancePrecision": {
+        "weighWorkstation": "Weighing WS",
+        "rangeNumber": "Range number",
+        "minRange": "Min capacity",
+        "maxRange": "Max capacity",
+        "balanceAccuracy": "Delta",
+        "tolerance": "Calibration tolerance",
+        "balance": "Balance"
+      },
+      "balance": {
+        "bralication": "Calibration",
+        "workStation": "Work station",
+        "code": "Code",
+        "name": "Name",
+        "isUseCertificate": "Use certificate ",
+        "certificateAlarm": "Alarm before enf of certificate validity",
+        "com": "COM",
+        "platformSeq": "Plantform",
+        "category": "Category",
+        "minCapacity": "Min capacity",
+        "maxCapacity": "Max capacity",
+        "unit": "Unit",
+        "lastCalibrationDate": "Calibration time",
+        "certificateID": "Certificate ID",
+        "certificateStartDate": "Start date of certificate",
+        "certificateEndDate": "End date of certificate",
+        "port": "Hardware COM",
+        "bps": "BPS",
+        "check": "Parity",
+        "dataBit": "Data bits",
+        "bitStop": "End bits",
+        "control": "Control",
+        "connectionType": "Communication type",
+        "ip": "IP address",
+        "ethernetPort": "Ethernet port",
+        "protocol": "Protocol",
+        "communicationDelay": "Communication frequency ",
+        "communicationRetryNumber": "Number of attempts",
+        "communicationRetryDelay": "Time between each attempt",
+        "stabilityRetryNumber": "Acquisition of a stable weight:number of attempts",
+        "stabilityRetryDelay": "Acquisition of a stable weight: time between each attempt",
+        "bargraphDelay": "Bargraph frequency",
+        "isResetBalanceTare": "Balance reset by taring",
+        "isResetTare": "Taring by reset",
+        "balanceType": "Balance type",
+        "balancePrecision": "Balance precision",
+        "balancePoise": "Weight ",
+        "calibrationHistory": "Calibration history",
+        "weighHistory": "Weighing history",
+        "info": {
+          "relation": "Link",
+          "range": "Range",
+          "calibration": "Calibration",
+          "rangeInfo": "Range",
+          "calibrationInfo": "Calibration",
+          "actions": "Operations",
+          "nowCertificate": "Current Certificate",
+          "newCertificate": "New Certificate",
+          "certificate": "Certificate",
+          "rangeTips": "Range value must be {num}"
+        },
+        "validateMessages": {
+          "notExceedEnd": "Cannot be greater than the end date",
+          "notLessThanStart": "Cannot be less than the start date",
+          "minNum": "The input value cannot be less than 0",
+          "comMaxNum": "The input value cannot be greater than 99",
+          "alarmMaxNum": "The input value cannot be greater than 999",
+          "maxCapacityRule": "The input value cannot be less than min capacity"
+        }
+      }
+    },
+    "calibrationHistory": {
+      "action": "Operation type",
+      "comment": "Operation comment",
+      "calibrationDate": "Calibration date",
+      "workCenter": "Work center",
+      "workstation": "Work station",
+      "operator": "Operator",
+      "platform": "Platform",
+      "calibrationType": "Calibration type",
+      "weighSeq": "Weighing Seq",
+      "code": "Balance code",
+      "rangeNumber": "Range Number",
+      "tolerance": "Tolerance",
+      "toleranceUnit": "Tolerance unit",
+      "poise": "Weight Name",
+      "poiseWeight": "Weight mass",
+      "caliberationWeight": "Weighing Number",
+      "caliberationWeightUnit": "Unit",
+      "calibrationFinDate": "End of Validity",
+      "archiveDate": "Archived time",
+      "extraInfo": {
+        "calibrationState": "Calibration status",
+        "calibrationInfo": "Calibration",
+        "calibrationStatus": "Calibration environment",
+        "calibrationEndDate": "End of Validity",
+        "operator": "Operator",
+        "operateTime": "Operation time",
+        "balance": "Balance",
+        "platForm": "Platform",
+        "rangeMin": "Min capacity",
+        "rangeMax": "Max capacity",
+        "weightNum": "Weighing Number",
+        "completeNum": "Performed weighing",
+        "weightUnit": "Weighing unit",
+        "calibrationDate": "Calibration time",
+        "calibrationFinDate": "End of Validity",
+        "calibrationType": "Calibration type"
+      },
+      "validateMessages": {
+        "cancelCalibration": "This data is not available after uncalibration.",
+        "cancelNoRepeat": "Unrecalibration is not repeatable",
+        "moreThanCalibration": "With the same calibration type and the same range, calibration times limit is {num}"
+      }
+    },
+    "weightHistory": {
+      "workOrder": "Work order",
+      "version": "Version",
+      "orderStatus": "Order status",
+      "lot": "Lot",
+      "phase": "Phase",
+      "step": "Step",
+      "dosage": "Dosage",
+      "action": "Action",
+      "weighSeq": "Weighed times with the same work order",
+      "materialWeighSeq": "Weighing Seq",
+      "operator": "Operator",
+      "workStation": "Work station",
+      "workCenter": "Work center",
+      "cleanDate": "Clean time",
+      "cleanType": "Clean type",
+      "materialCode": "Material code",
+      "materialUnit": "Material unit",
+      "materialPotency": "Material potency",
+      "materialPotency2": "Material potency2",
+      "materialDensity": "Material density",
+      "stockUnit": "Stock unit",
+      "materialLot": "Material lot",
+      "emplacement": "Emplacement",
+      "container": "Container",
+      "containerID": "Container ID",
+      "lotPotency": "Lot potency",
+      "lotPotency2": "Lot potency2",
+      "lotDensity": "Lot density",
+      "lotStatus": "Lot status",
+      "isUseLotPotency": "Use lot potency",
+      "isUseLotPotency2": "Use lot potency2",
+      "weighMode": "weighing mode",
+      "tolerance": "Tolerance",
+      "isDensityTagIndex": "Density tag",
+      "concordanceNumber": "Material balance",
+      "startGross": "Start gross",
+      "finishGross": "Finish gross",
+      "calculateNet": " Calculated net",
+      "containerTare": "Container tare",
+      "tare": "Tare",
+      "net": "Net",
+      "gross": "Gross",
+      "weighUnit": "Weighing unit",
+      "weighGap": "Weighing delta",
+      "isSameContainer": "Same container indicator",
+      "palletQty": "Pallet Qty",
+      "containerQty": "Container Qty",
+      "weighStartDate": "Start weighing time",
+      "weighFinDate": "End weighing time",
+      "isFinContainer": "Final container",
+      "isForceWeigh": "Forced weighing",
+      "isLotForce": "Forced lot",
+      "isRespectLot": "Correct lot",
+      "isLabelPrinted": "Label printed",
+      "labelQty": "Label Qty",
+      "labelCode": "Label code",
+      "countingUnit": "Count unit",
+      "labelPrintDate": "Label print time",
+      "balancePrecision": "Balance precision",
+      "taskID": "Task ID",
+      "reconciliation": "Reconciliation",
+      "reconciliationWS": "Reconciliation WS",
+      "reconciliationOperator": "Reconciliation operator",
+      "reconciliationDate": "Reconciliation time",
+      "combination": "Combination",
+      "combinationOperator": "Combination operator",
+      "combinationTime": "Combination time",
+      "combinationWS": "Combination WS",
+      "srcEquipmentCode": "Src.equipment code",
+      "dstEquipmentCode": "Dst.equipment code",
+      "weighReconciliationDate": "Weighed reconciliation time",
+      "weighCombinationDate": "Weighed combination time",
+      "balance": "Balance",
+      "weighLine": "Weighing material",
+      "extraInfo": {
+        "label": "Label",
+        "theoryValue": "Theoretical value",
+        "realValue": "Actual value",
+        "materialList": "Material list",
+        "workOrderList": "WO list",
+        "workStation": "Weighing WS",
+        "workCenter": "Work center",
+        "time": "Time",
+        "times": " Has been weighed {num} times",
+        "operator": "Operator:",
+        "workOrder": "Work order:",
+        "batch": "Lot:",
+        "product": "Product:",
+        "surplus": "Remain",
+        "totalWeight": "Total weight",
+        "weighed": "Weighed",
+        "upperLimit": "Upper limit",
+        "lowerLimit": "Lower limit",
+        "hazard": "Hazard precaution",
+        "workOrderCleanInfo": "Clean by WO ",
+        "materialCleanInfo": "Clean by material",
+        "workOrderInfo": "WO detail",
+        "releaseDate": "Launched time",
+        "orderType": "Order type",
+        "surplusVal": "{unit}/{num}{unit}",
+        "startWeighing": "Starting weighing :",
+        "unopenScale": "Cannot get the scale data, mayby it is not opened",
+        "tareError": "The tare is inconsistent in the weighing of the same lot"
+      },
+      "tips": {
+        "errorCheckTip": "Delta! Scale delta: {balanceErr}> acceptable delta: {allowErr}; Confirm to weight ?",
+        "completeWeighing": "This material has been weighed",
+        "unWeighable": "This material cannot be weighed",
+        "compensateErr": "Not all materials without the compensation material are weighed,compensation material cannot be weighed",
+        "compensateY": "Do not need to weigh the potency compensation",
+        "compensateX": "Do not need to weigh the WO compensation "
+      }
+    },
+    "formulaAudit": {
+      "date": "Date",
+      "formulaCode": "Code",
+      "formulaVersion": "Version",
+      "action": "Action",
+      "username": "User name",
+      "workCenter": "Work center",
+      "workStation": "Work station",
+      "createdAt": "Creation date",
+      "signOne": "Signature 1",
+      "messageOne": "Remark 1",
+      "signTwo": "Signature 2",
+      "messageTwo": "Remark 2",
+      "description": "Message"
+    }
+  },
+  "validation": {
+    "required": "Field cannot be empty",
+    "lengthLimit": "The length limit is 10",
+    "email": "Invalid email format"
+  },
+  "noDataText": "No data",
+  "carousel": {
+    "prev": "Previous vision",
+    "next": "Next vision"
+  },
+  "validate": {
+    "number": {
+      "infinite": "Please input the valid  number",
+      "phone": "Please input a valid phone number",
+      "fax": "Please input a valid fax number,e.g.:010-12345678",
+      "IDCard": "Please input the valid ID number",
+      "fixed": "Please input {min} numbers[only numbers]",
+      "more": "Please input {min} numbers[only numbers] at least",
+      "section": "Please input {min}-{max} numbers[only numbers]"
+    },
+    "commonUse": {
+      "infinite": "{name} consists of letters, numbers, /_- , and start with letter or number",
+      "englist": "{name} consists of English letters",
+      "email": "Please input the correct email address",
+      "fixed": "Please input {min} alphanumeric characters",
+      "more": "Please input {min} alphanumeric characters at least",
+      "section": "Please input {min}-{max} alphanumeric characters",
+      "letterFixed": "Consists of {min} alphanumeric characters, and start with letter",
+      "letterMore": "{min} alphanumeric characters at least, and start with letter",
+      "letterSection": "{min}-{max} alphanumeric characters, and start with letter",
+      "ltCount": "Please input a number greater than 0"
+    },
+    "special": "Continuous 3 special characters is not allowed.",
+    "chinese": "Please input  Chinese characters",
+    "nameReg": "{name} consists of letters, Chinese characters,  numbers, /_-, and cannot start with a special character"
+  }
+}

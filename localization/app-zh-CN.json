@@ -1,0 +1,1330 @@
+{
+  "system": {
+    "name": "<span class='special'>H</span><span>olliEBR</span>",
+    "company": "北京和利时智能技术有限公司",
+    "version": "1.0.0",
+    "copyright": "版权所有",
+    "router": {
+      "routeComponentFailure": "导航错误,加载组件失败.",
+      "routeFailure": "导航错误,,请稍后重试或与系统管理员联系。"
+    },
+    "menu": {
+      "menuitems": "菜单项",
+      "upgrade": "升级",
+      "upgradeFailure": "升级失败,请点击上方刷新按钮刷新后重试",
+      "degrade": "降级",
+      "degradeFailure": "降级失败,请点击上方刷新按钮刷新后重试",
+      "downward": "下移",
+      "downwardFailure": "向下移动失败,请点击上方刷新按钮刷新后重试",
+      "upward": "上移",
+      "upwardFailure": "向上移动失败,请点击上方刷新按钮刷新后重试",
+      "removeDisable": "根节点或有子节点时不允许删除",
+      "removeFailure": "删除失败,请点击上方刷新按钮刷新后重试",
+      "removeFail": "已授权,无法删除",
+      "enable": "启用",
+      "disable": "禁用",
+      "state": "状态",
+      "type": "类别",
+      "internal": "内置功能",
+      "internalLink": "内部链接",
+      "external": "外部链接",
+      "externalPopup": "外部链接(新窗口)",
+      "code": "编码",
+      "codePlaceholder": "全局唯一编码,仅支持(小写)英文字母和数字,且以字母开头",
+      "name": "名称",
+      "namePlaceholder": "菜单名称,多语言标识无效时启用",
+      "i18N": "多语言",
+      "i18NPlaceholder": "多语言标识,导航菜单中文字优先使用此项",
+      "i18NUndefine": "未定义",
+      "icon": "图标",
+      "iconPlaceholder": "请选择图标",
+      "componentPath": "组件路径",
+      "componentPathPlaceholder": "组件路径,如welcome表示 /src/views/welcome 组件",
+      "url": "URL",
+      "urlPlaceholder": "URL,如 www.hollysys.com",
+      "description": "备注说明",
+      "descriptionPlaceholder": "请输入",
+      "levelRule": "最多只允许{maxLevel}级菜单",
+      "tips": "不允许对一级菜单进行操作;菜单最大级别不能超过{maxLevel}级.",
+      "plsSave": "请先保存",
+      "notAllowUpgrade": "不允许升级",
+      "notAllowDegrade": "不允许降级",
+      "isFirstChild": "已经是第一个",
+      "isLastChild": "已经是最后一个",
+      "rules": {
+        "code": "必填,1-20个字母数字组成",
+        "name": "必填,1-20个字母或汉字",
+        "url": "请输入(URL或组件)地址"
+      }
+    },
+    "dictionary": {
+      "label": "显示文字",
+      "value": "值",
+      "groupCode": "分组编号",
+      "orderNo": "顺序值",
+      "messages": {
+        "uniqueGroupCodeAndValue": "不能重复. @:system.dictionary.groupCode : {groupCode}, @:system.dictionary.value : {value} 已经存在."
+      }
+    },
+    "usergroup": {
+      "title": "用户组",
+      "code": "编码",
+      "name": "名称",
+      "userlist": "用户列表",
+      "hasUsers": "当前用户组包含 {count} 个用户,不允许删除。",
+      "messages": {
+        "uniqueCode": "{code} 已经存在",
+        "uniqueName": "{name} 已经存在",
+        "codeRule": "请输入4-10个英文、数字、下划线、横线",
+        "nameRule": "请输入4-20个英文或数字或汉字"
+      }
+    },
+    "signGroup": {
+      "title": "签名组",
+      "description": "描述",
+      "name": "名称",
+      "signPermission": "签名权限"
+    },
+    "signPermission": {
+      "module": "模块",
+      "field": "字段",
+      "method": "方法",
+      "customMethod": "自定义方法",
+      "customField": "自定义字段",
+      "message": {
+        "uniqueModule": "不能重复. @:system.signPermission.module: {module} 已经存在."
+      }
+    },
+    "signRule": {
+      "name": "名称",
+      "category": "分类",
+      "value": "值",
+      "action": "动作",
+      "group": "签名分组",
+      "description": "描述"
+    },
+    "permission": {
+      "selectedUsers": "用户选择",
+      "title": "权限",
+      "plsSelectUserGroup": "请选择用户组"
+    },
+    "dataPermission": {
+      "query": "查询(Query)",
+      "mutate": "变更(Mutation)",
+      "empty": "没有需要配置的数据权限",
+      "queries": {
+        "users": "用户",
+        "usersConnection": "用户连接",
+        "persons": "人员",
+        "personsConnection": "人员连接"
+      },
+      "mutations": {
+        "deleteManyUsers": "批量删除用户",
+        "deleteManyPersons": "批量删除人员"
+      },
+      "fields": {
+        "person": "人员(person)",
+        "organize": "组织机构(organize)"
+      },
+      "modules": {
+        "base": "基础模块(base)",
+        "system": "系统模块(system)",
+        "product": "产品模块(product)"
+      }
+    },
+    "modifyPwd": {
+      "username": "用户名",
+      "oldPwd": "原密码",
+      "newPwd": "新密码",
+      "confirmNewPwd": "确认密码",
+      "messages": {
+        "plsInputOldPwd": "请输入原密码",
+        "plsInputNewPwd": "请输入新密码",
+        "plsInputNewPwd1": "请再次输入新密码",
+        "newPwdNotMatch": "两次输入密码不一致",
+        "success": "修改密码成功",
+        "failure": "修改密码失败",
+        "oldPwdIncorrect": "原密码不正确",
+        "oldPwdEqualNewPwd": "新密码不能与原密码相同"
+      }
+    },
+    "userManager": {
+      "resetPassword": "重置密码",
+      "userName": "用户名",
+      "email": "电子邮箱",
+      "role": "角色",
+      "group": "用户组",
+      "person": "人员",
+      "remark": "备注",
+      "rules": {
+        "email": "请输入电子邮箱,例如:name@example.com",
+        "name": "请输入用户名,字母和数字,字母开头,长度4-20个",
+        "nameExist": "已经存在",
+        "role": "请选择角色",
+        "person": "请选择人员",
+        "group": "请选择用户组"
+      },
+      "noPersons": "没有找到可选的人员,当前所有的人员已与用户对应,请先添加人员.",
+      "resetPasswordSuccess": "重置密码成功",
+      "resetPasswordFailure": "重置密码失败"
+    },
+    "organize": {
+      "title": "组织机构",
+      "name": "组织名称",
+      "code": "组织编码",
+      "type": "组织类型",
+      "parent": "所属父级",
+      "messages": {
+        "uniqueGroupCodeAndValue": "不能重复. @:system.organize.code : {code} 已经存在.",
+        "notMatch": "所选组织类型与父级不匹配,请重新选择"
+      }
+    },
+    "person": {
+      "title": "人员",
+      "userName": "用户名",
+      "sex": "性 别",
+      "code": "编 码",
+      "organize": "所属组织",
+      "birthday": "生 日",
+      "name": "姓 名",
+      "remark": "备注",
+      "male": "男",
+      "female": "女",
+      "unknow": "未分配"
+    },
+    "workStation": {
+      "code": "编码",
+      "name": "名称",
+      "workCenter": "工作中心",
+      "device": "设备",
+      "description": "描述",
+      "createdAt": "创建日期",
+      "updatedAt": "最近修改",
+      "messages": {
+        "uniqueCodeAndName": "不能重复. @:system.workStation.code: {code}, @system.workStation.name: {name} 已经存在."
+      }
+    },
+    "workCenter": {
+      "location": "位置",
+      "workStation": "工作站"
+    },
+    "device": {
+      "deviceType": "设备类型",
+      "weight": "电子秤",
+      "band": "手环",
+      "printer": "打印机",
+      "address": "地址",
+      "status": "状态",
+      "register": "注册",
+      "unregister": "注销",
+      "online": "在线",
+      "offline": "离线"
+    }
+  },
+  "common": {
+    "enums": {
+      "menuType": {
+        "INTERNAL": "@:schema.enums.MenuType.INTERNAL",
+        "INTERNALLINK": "@:schema.enums.MenuType.INTERNALLINK",
+        "EXTERNAL": "@:schema.enums.MenuType.EXTERNAL",
+        "EXTERNALPOPUP": "@:schema.enums.MenuType.EXTERNALPOPUP"
+      },
+      "roleType": {
+        "ADMIN": "@:schema.enums.Role.ADMIN",
+        "SYSTEM": "@:schema.enums.Role.SYSTEM",
+        "USER": "@:schema.enums.Role.USER"
+      },
+      "organizeType": {
+        "GROUP": "@:schema.enums.OrganizeType.GROUP",
+        "COMPANY": "@:schema.enums.OrganizeType.COMPANY",
+        "DEPARTMENT": "@:schema.enums.OrganizeType.DEPARTMENT"
+      }
+    },
+    "messages": {
+      "dataIntegrityError": "有引用数据,不允许删除.",
+      "confirmMessage": "请确认",
+      "dataNumLimit": "数据不得超过3条",
+      "errorMessage": "操作失败,请稍后再试或与系统管理员联系",
+      "deleteConfirm": "删除后不可恢复,请确定是否继续删除?",
+      "cancelEditConfirm": "取消后当前修改将丢失,请确定是否放弃修改?",
+      "terminationConfirm": "终止后不可恢复,请确定是否继续终止?",
+      "closeConfirm": "关闭后不可恢复,请确定是否继续关闭?",
+      "cancelConfirm": "取消后不可恢复,请确定是否继续取消?",
+      "tips": "提示",
+      "step": "操作步骤",
+      "saveSuccess": "保存成功",
+      "saveFailure": "保存失败",
+      "removeSuccess": "删除成功",
+      "removeFailure": "删除失败",
+      "calibrationSuccess": "校准成功",
+      "calibrationFailure": "校准失败",
+      "forcedWeighingSuccess": "强制称量成功",
+      "forcedWeighingFailure": "强制称量失败",
+      "verificationSuccess": "验证成功",
+      "verificationFailure": "验证失败",
+      "cancelCalibrationSuccess": "取消校准成功",
+      "cancelCalibrationFailure": "取消校准失败",
+      "plsSelectRow": "请选择行",
+      "plsSelectOrgan": "请选择组织机构",
+      "alreadyExist": "已存在,不能重复",
+      "validateError": "验证错误,请稍后再试",
+      "getPermissionActionsFailure": "获取操作权限失败,您暂时不能访问指定功能,请稍后重试",
+      "networkFailure": "网络通信错误",
+      "empty": "没有数据",
+      "refresh_success": "刷新成功",
+      "refresh_fail": "刷新失败",
+      "delete_warn": "不允许删除集团类型",
+      "edit_warn": "不允许编辑集团类型",
+      "remove_warn": "该节点下含有子集,请先将其移除",
+      "open": "Y",
+      "close": "N",
+      "checkTips": "该等级及其之后的校验都会被清除,请确认是否选择？",
+      "illegalCharacter": "发现非法字符,请添加正确数据"
+    },
+    "buttons": {
+      "ok": "确定",
+      "cancel": "取消",
+      "close": "关闭",
+      "reset": "重置",
+      "save": "保存",
+      "submit": "提交"
+    },
+    "labels": {
+      "rowIndex": "#",
+      "createdAt": "创建日期",
+      "updatedAt": "最近修改",
+      "description": "备注"
+    },
+    "loading": "加载中...",
+    "fullScreen": "全屏",
+    "fullScreenExit": "退出全屏",
+    "sidebarCollapsed": "折叠导航菜单",
+    "sidebarExpand": "展开导航菜单",
+    "refresh": "@:common.actions.refresh",
+    "profile": "个人设置",
+    "lock": "锁定",
+    "modifyPassword": "修改密码",
+    "signout": "退 出",
+    "add": "@:common.actions.add",
+    "delete": "@:common.actions.remove",
+    "edit": "@:common.actions.edit",
+    "save": "@:common.buttons.save",
+    "reset": "@:common.buttons.reset",
+    "cancel": "@:common.buttons.cancel",
+    "close": "@:common.buttons.close",
+    "deleteConfirm": "@:common.messages.deleteConfirm",
+    "tips": "@:common.messages.tips",
+    "saveSuccess": "@:common.messages.saveSuccess",
+    "saveFailure": "@:common.messages.saveFailure",
+    "removeSuccess": "@:common.messages.removeSuccess",
+    "removeFailure": "@:common.messages.removeFailure",
+    "lines": "行数",
+    "de": "总共",
+    "actions": {
+      "add": "新增",
+      "remove": "删除",
+      "edit": "编辑",
+      "import": "导入",
+      "export": "导出",
+      "upload": "上传",
+      "download": "下载",
+      "print": "打印",
+      "refresh": "刷新",
+      "checkedAll": "全选",
+      "uncheckedAll": "全不选",
+      "expandAll": "全部展开",
+      "collapsedAll": "全部折叠",
+      "start": "开始",
+      "stop": "停止",
+      "finish": "完成",
+      "pause": "暂停",
+      "continue": "继续",
+      "forward": "下一步",
+      "backward": "上一步",
+      "move": "移动",
+      "redo": "恢复",
+      "undo": "撤消",
+      "reset": "重置",
+      "copy": "复制",
+      "upCopy": "副本",
+      "commit": "提交",
+      "allow": "批准",
+      "withdraw": "撤回",
+      "Verification": "验证",
+      "correct": "修订",
+      "release": "发布",
+      "undoRelease": "撤消发布",
+      "cancel": "取消",
+      "termination": "终止",
+      "close": "关闭",
+      "Printing": "打印",
+      "save": "保存",
+      "inputCertificate": "输入证书",
+      "calibration": "校准",
+      "cancelCalibration": "取消校准",
+      "cancelWeighing": "取消称量",
+      "palletLabel": "托盘标签",
+      "forcedWeighing": "强制称量",
+      "reprintLabel": "重新打印标签",
+      "see": "查看"
+    },
+    "placeholders": {
+      "plsInput": "请输入",
+      "plsSelect": "请选择",
+      "beginDate": "开始日期",
+      "endDate": "结束日期",
+      "to": "至",
+      "preset": "预设",
+      "selectWorkStation": "选择工作站",
+      "selectMaterial": "选择物料",
+      "selectFormula": "选择处方",
+      "selectWorkOrder": "选择工单",
+      "selectBalance": "选择衡器",
+      "selectMiInfo": "选择MI",
+      "selectPoise": "选择砝码",
+      "presetLast7Days": "最近七天",
+      "presetLast1Month": "最近一个月",
+      "presetLast3Month": "最近三个月",
+      "presetLast6Month": "最近半年",
+      "presetLast1Year": "最近一年",
+      "presetLast2Year": "最近二年"
+    },
+    "rules": {
+      "validateFailure": "请按照格式要求填写数据",
+      "plsInput": "请输入",
+      "plsSelect": "请选择",
+      "length": "请输入{min}到{max}个字符",
+      "lessThan": "不得小于{num}",
+      "moreThan": "不得大于{num}",
+      "equalTo": "该值应等于{num}",
+      "BetweenCount": "请输入大于0小于10的整数",
+      "gtCount": "请输入大于0的数字",
+      "gtinteger": "请输入大于0的整数"
+    }
+  },
+  "user": {
+    "title": "用户信息",
+    "pwdtitle": "重置密码",
+    "name": "用户名",
+    "email": "电子邮箱",
+    "role": "角色",
+    "group": "组别",
+    "person": "绑定人员",
+    "remark": "备注",
+    "passwork": "新密码",
+    "passwdcheck": "确认新密码",
+    "placeholder": {
+      "search": "请输入姓名...",
+      "name": "请输入用户名...",
+      "email": "请输入电子邮箱...",
+      "remark": "请输入备注信息...",
+      "passwork": "请输入新密码...",
+      "passwdcheck": "请再次输入密码..."
+    }
+  },
+  "person": {
+    "title": "人员信息",
+    "organizename": "公司",
+    "createdAt": "创建时间",
+    "userName": "用户名",
+    "sex": "性 别",
+    "code": "编 码",
+    "organize": "所属组织",
+    "birthday": "生 日",
+    "name": "姓 名",
+    "remark": "备注",
+    "male": "男",
+    "female": "女",
+    "placeholder": {
+      "name": "请输入姓名...",
+      "organizes": "请选择组织机构...",
+      "code": "请输入员工编码..."
+    },
+    "unknow": "未分配"
+  },
+  "workStation": {
+    "code": "编码",
+    "name": "名称",
+    "workCenter": "工作中心",
+    "device": "外部设备名称",
+    "description": "描述",
+    "createdAt": "创建日期",
+    "updatedAt": "最近修改时间",
+    "messages": {
+      "uniqueCodeAndName": "不能重复. @:system.workStation.code: {code}, @system.workStation.name: {name} 已经存在."
+    }
+  },
+  "workCenter": {
+    "location": "位置",
+    "workStation": "工作站"
+  },
+  "mi": {
+    "mi-excute-title": "MI流程执行",
+    "mi-subflow-title": "子流程",
+    "name-undefined": "该工艺流程中,存在未命名节点,请更正后重新生成流程图"
+  },
+  "device": {
+    "deviceType": "设备类型",
+    "weight": "电子秤",
+    "band": "手环",
+    "printer": "打印机",
+    "address": "地址",
+    "status": "状态",
+    "register": "注册",
+    "unregister": "注销",
+    "online": "在线",
+    "offline": "离线"
+  },
+  "organizes": {
+    "title": "组织机构信息",
+    "name": "名称",
+    "code": "编码",
+    "type": "类型",
+    "parent": "父级",
+    "placeholder": {
+      "name": "请输入组织名称...",
+      "code": "请输入组织编码...",
+      "parent": "请输入父级信息..."
+    }
+  },
+  "menus": {
+    "unknow": "未命名",
+    "system": {
+      "title": "系统设置",
+      "user": "用户管理",
+      "role": "权限设置",
+      "menus": "菜单设置",
+      "welcome": "欢迎",
+      "usergroup": "用户组"
+    },
+    "home": "首页",
+    "welcome": "欢迎"
+  },
+  "login": {
+    "username": "用户名",
+    "password": "密码",
+    "signin": "登 录",
+    "title": "登录 HolliEBR",
+    "incorrectUsername": "请输入用户名",
+    "incorrectPassword": "请输入密码",
+    "incorrectWorkStation": "请选择工作站",
+    "incorrectUsernameOrPassword": "用户名或密码错误\n还可重试 {times} 次",
+    "loginLocked": "登录被锁定 {minutes} 分钟",
+    "loginFailure": "用户信息不完整",
+    "overtime": "登录超时,请重新登录.",
+    "lockedTitle": "屏幕已锁定",
+    "lockedBottom": "系统已锁定,请输入密码解锁",
+    "lockedNotThrough": "验证未通过",
+    "loginVerificationCodeErr": "验证码错误",
+    "loginStoLoginInfoErr": "存储登录信息错误",
+    "lockedCurrentUser": "请输入当前用户",
+    "incorrectPasswordErr": "密码错误",
+    "noPermission": "权限不足,请切换其他账户登录",
+    "getUserInfoFailure": "获取用户信息失败"
+  },
+  "agGrid": {
+    "page": "",
+    "more": "更多",
+    "to": "-",
+    "of": "/",
+    "next": "下一页",
+    "last": "尾页",
+    "first": "首页",
+    "previous": "上一页",
+    "loadingOoo": "@:common.loading",
+    "selectAll": "全选",
+    "searchOoo": "搜索...",
+    "blanks": "空白",
+    "filterOoo": "过滤条件...",
+    "applyFilter": "应用",
+    "clearFilter": "清除",
+    "equals": "等于",
+    "notEqual": "不等于",
+    "lessThan": "小于",
+    "lessThanOrEqual": "小于或等于",
+    "greaterThan": "大于",
+    "greaterThanOrEqual": "大于或等于",
+    "inRange": "区间",
+    "contains": "包含",
+    "notContains": "不包含",
+    "startsWith": "起始",
+    "endsWith": "结尾",
+    "group": "分组",
+    "columns": "显示列",
+    "rowGroupColumns": "透视(Pivot)列",
+    "rowGroupColumnsEmptyMessage": "拖拽列以分组",
+    "valueColumns": "值列",
+    "pivotMode": "透视(Pivot)模式",
+    "groups": "组",
+    "values": "聚合",
+    "pivots": "透视(Pivots)",
+    "valueColumnsEmptyMessage": "拖拽列以聚合",
+    "pivotColumnsEmptyMessage": "拖拽列以透视(Pivot)",
+    "toolPanelButton": "工具箱",
+    "noRowsToShow": "@:common.messages.empty",
+    "pinColumn": "固定列",
+    "valueAggregation": "聚合值",
+    "autosizeThiscolumn": "自适应宽度",
+    "autosizeAllColumns": "所有列自适应宽度",
+    "groupBy": "分组",
+    "ungroupBy": "取消分组",
+    "resetColumns": "还原列显示",
+    "expandAll": "展开所有",
+    "collapseAll": "收起所有",
+    "toolPanel": "工具面板",
+    "export": "导出",
+    "csvExport": "导出CSV",
+    "excelExport": "导出Excel",
+    "pinLeft": "左侧固定",
+    "pinRight": "右侧固定",
+    "noPin": "不固定",
+    "sum": "求和",
+    "min": "最小值",
+    "max": "最大值",
+    "none": "无",
+    "count": "数量",
+    "average": "平均值",
+    "copy": "复制",
+    "copyWithHeaders": "复制(带列头)",
+    "ctrlC": "CTRL + C",
+    "paste": "粘贴",
+    "ctrlV": "CTRL + V",
+    "filters": "筛选"
+  },
+  "product": {
+    "material": {
+      "id": "编号",
+      "code": "物料编码",
+      "name": "物料名称",
+      "description": "描述",
+      "type": "物料类型",
+      "number": "大小",
+      "unit": "单位",
+      "createdAt": "创建时间"
+    },
+    "site": {
+      "code": "场地编码",
+      "name": "场地名称",
+      "description": "说明",
+      "createdAt": "创建时间",
+      "updateAt": "最近修改时间"
+    },
+    "depot": {
+      "code": "编码",
+      "name": "名称",
+      "site": "场地",
+      "description": "描述",
+      "createdAt": "创建时间",
+      "updateAt": "最近修改时间"
+    },
+    "location": {
+      "id": "",
+      "code": "工作中心编码",
+      "name": "工作中心名称",
+      "description": "描述",
+      "area": "区域名称",
+      "site": "厂区名称",
+      "createdAt": "创建时间",
+      "updateAt": "最近修改时间"
+    },
+    "workOrder": {
+      "workOrder": "编码",
+      "version": "版本",
+      "productCode": "产品编码",
+      "productName": "产品名称",
+      "status": "状态",
+      "stability": "稳定性",
+      "orderWorkCenters": "工作中心",
+      "lotNo": "批次号",
+      "lotRank": "总体状态",
+      "releaseDate": "发布时间",
+      "priority": "优先级",
+      "erpSendDate": "ERP下发时间",
+      "equivalentWeigh": "称量当量",
+      "qty": "数量",
+      "unit": "单位",
+      "miCode": "MI编码",
+      "miVersion": "MI版本",
+      "orderFormulaMap": "工单关系",
+      "orderCategoryType": "工单种类",
+      "miMessage": "MI已经开始执行,该工单不能撤销发布",
+      "message": "备注",
+      "Verification": "该工单下的处方未验证",
+      "allow": "该工单下的处方未批准",
+      "OrderFormulaMap": {
+        "formulaCode": "处方编码",
+        "formulaName": "处方名称",
+        "formulaType": "处方类型",
+        "formulaVersion": "处方版本",
+        "beginValidDate": "有效开始时间",
+        "endValidDate": "有效结束时间",
+        "ValidDate": "有效时间",
+        "Quantity": "参考值",
+        "Equivalent": "称量值",
+        "refQuantityUnit": "参考单位",
+        "weightEquivalent": "等价称量",
+        "weightEquivalentUnit": "称量单位",
+        "unitType": "处方单位类型",
+        "unit": "单位"
+      },
+      "materialInfo": "物料信息",
+      "formulaTypeArr": {
+        "T": "测试/研发",
+        "M": "生产/临床"
+      },
+      "orderCategory": {
+        "D": "直接工单",
+        "F": "处方工单",
+        "X": "ERP工单",
+        "S": "指定输出"
+      },
+      "orderFormula": "指定处方",
+      "orderMaterials": {
+        "materialCode": "物料编码",
+        "materialName": "物料名称",
+        "totalStdQty": "数量",
+        "unit": "单位",
+        "isFixedQty": "固定数量",
+        "phase": "阶段",
+        "step": "次序",
+        "dosage": "剂量",
+        "isUniqueLot": "单一批次",
+        "isPotency": "使用效价",
+        "isWeightingWeight": "称量间称量",
+        "isMfgWeight": "车间称量",
+        "isPackWeight": "包装间称量",
+        "compensateur": "补偿器类型",
+        "tolerance": "公差",
+        "workCenter": "工作中心",
+        "weighStatus": "状态",
+        "WeightMode": "称量模式",
+        "WeightUnit": "称量单位",
+        "qty": "数量",
+        "isCompensateur": "是否补偿",
+        "IsPotency": "使用效价",
+        "language": "语言",
+        "lotRank": "集中状态",
+        "isTrue": {
+          "true": "是",
+          "false": "否"
+        },
+        "isCompensateurArr": {
+          "N": "该物料不是补偿物料",
+          "Y": "效价变化的补偿物料",
+          "X": "工单重量变化的补偿物料"
+        }
+      }
+    },
+    "labelManager": {
+      "labelGroup": "标签组",
+      "code": "编码",
+      "filterAccording": "过滤依据",
+      "name": "名称",
+      "desc": "描述",
+      "zpl": "ZPL",
+      "createdAt": "创建时间",
+      "updatedAt": "最近修改时间",
+      "createUser": "创建人",
+      "updateUser": "修改人",
+      "codeRequired": "编码为必填项",
+      "nameRequired": "名称为必填项",
+      "labelGroupRequired": "异常导致标签组为空",
+      "zplRequired": "ZPL为必填项",
+      "codeExists": "标签编码 {code} 已存在,请重新输入",
+      "nameExists": "标签名称 {name} 已存在,请重新输入"
+    },
+    "miManager": {
+      "upgrade": "升级",
+      "code": "MI编码",
+      "version": "版本",
+      "group": "分组",
+      "type": "类型",
+      "status": "状态",
+      "startDate": "开始时间",
+      "endDate": "结束时间",
+      "codeRules": "MI编码为必填项",
+      "versionRules": "版本不能为空",
+      "groupRules": "分组为必选项",
+      "typeRules": "类型为必选项",
+      "statusRules": "状态为必选项",
+      "startDateRules": "开始时间为必选项",
+      "endDateRules": "结束时间为必选项",
+      "codeVersionExists": "code {code} 已存在,系统已自动将版本升级,请再次点击确定",
+      "upgradeSuccess": "升级成功",
+      "upgradeFailure": "升级失败",
+      "versionUpgrade": "版本升级",
+      "versionUpgradeMessage": "您确定要升级吗？"
+    }
+  },
+  "message": "你好多语言 !!!!~",
+  "environment": "环境变量",
+  "changeLocale": "请选择选择语言",
+  "welcome": "欢迎使用 HolliEBR",
+  "$vuetify": {
+    "dataIterator": {
+      "rowsPerPageText": "每页记录数:",
+      "rowsPerPageAll": "全部",
+      "pageText": "{0}-{1} 共 {2} 条",
+      "noResultsText": "没有找到匹配记录",
+      "nextPage": "下一页",
+      "prevPage": "上一页"
+    },
+    "dataTable": {
+      "rowsPerPageText": "每页行数:"
+    },
+    "noDataText": "无可用数据",
+    "carousel": {
+      "prev": "以前的视觉",
+      "next": "下一个视觉"
+    }
+  },
+  "noPermission": {
+    "reprePage": "返回上一页"
+  },
+  "schema": {
+    "enums": {
+      "MenuType": {
+        "INTERNAL": "内部功能",
+        "INTERNALLINK": "内部链接",
+        "EXTERNAL": "外部功能",
+        "EXTERNALPOPUP": "外部弹出"
+      },
+      "Role": {
+        "ADMIN": "超级管理员",
+        "SYSTEM": "系统管理员",
+        "USER": "普通用户"
+      },
+      "OrganizeType": {
+        "GROUP": "集团",
+        "COMPANY": "公司",
+        "DEPARTMENT": "部门"
+      },
+      "DictionaryType": {
+        "HPP": "危险防范标记",
+        "EBR_UNIT": "EBR单位",
+        "MASS_UNIT": "质量单位",
+        "UINT_UNIT": "计数单位",
+        "BPS": "波特率",
+        "DATA_BIT": "数据位",
+        "END_BIT": "结束位"
+      },
+      "ValidityUnit": {
+        "M": "月",
+        "D": "日"
+      },
+      "ShelfLifeUnit": {
+        "MONTH": "月",
+        "DAY": "天",
+        "HOUR": "小时",
+        "MIN": "分钟"
+      },
+      "FormulaType": {
+        "T": "测试/研发",
+        "M": "生产/临床"
+      },
+      "FormulaStatus": {
+        "M": "可编辑",
+        "T": "结束输入",
+        "A": "已批准",
+        "V": "已验证",
+        "O": "失效的"
+      },
+      "FormulaUnitType": {
+        "Q": "定量",
+        "U": "单一"
+      },
+      "CompensateurType": {
+        "N": "非补偿物料",
+        "Y": "效价补偿",
+        "X": "工单补偿"
+      },
+      "MaterialListType": {
+        "U": "无分类",
+        "I": "分类1",
+        "II": "分类2",
+        "S": "麻醉剂",
+        "P": "精神治疗药物",
+        "X": "麻醉和精神治疗药物"
+      },
+      "MaterialType": {
+        "RAW": "原材料",
+        "HALF": "半成品",
+        "PACK": "包材",
+        "FINISHED": "成品"
+      },
+      "MaterialStatus": {
+        "M": "可编辑",
+        "V": "已验证",
+        "O": "失效的"
+      },
+      "PotencyType1": {
+        "N": "无效价",
+        "P": "%",
+        "L": "μg/mg",
+        "U": "IU/mg",
+        "M": "MIU/g",
+        "R": "μg/ml",
+        "S": "mg/ml",
+        "T": "IU/ml",
+        "V": "IU/g"
+      },
+      "PotencyType2": {
+        "N": "无称量单位",
+        "K": "称量单位以公斤表示",
+        "G": "称量单位以克表示",
+        "M": "称量单位以毫克表示"
+      },
+      "LotStatus": {
+        "QUARANTINE": "检验",
+        "APPROVED": "批准",
+        "CONDITIONALLY_APPROVED": "带条件批准",
+        "TEST": "测试",
+        "HOLD": "锁定",
+        "REJECTED": "驳回",
+        "OBSOLETE": "失效的"
+      },
+      "LotSampleStatus": {
+        "TO_BE_SAMPLED": "待检",
+        "SAMPLING": "检验中",
+        "SAMPLED": "已检验",
+        "TO_BE_RESAMPLED": "待重检"
+      },
+      "ABCCode": {
+        "A": "A",
+        "B": "B",
+        "C": "C"
+      },
+      "SampleLabelType": {
+        "P": "托盘标签",
+        "C": "容器标签"
+      },
+      "GHSWord": {
+        "E": "无",
+        "W": "警告",
+        "D": "危险"
+      },
+      "WeightMode": {
+        "NET": "净重",
+        "GROSS": "毛重",
+        "LURE_GROSS": "仿毛",
+        "UNPACKING": "拆包",
+        "MANUAL_INPUT": "人工输入",
+        "FORCED_INPUT": "强制输入",
+        "RM_MIX": "RM混合",
+        "RECORDED_TARE": "记录皮重",
+        "SUBTRACT": "减法",
+        "DOUBLE": "双重",
+        "AUTOMATIC": "自动",
+        "LASER": "激光",
+        "CYLINDER": "量筒",
+        "PALLET": "托盘",
+        "COUNTING": "计数",
+        "SG_FG": "开始毛重-结束毛重"
+      },
+      "BalanceType": {
+        "A": "METTLER ID30",
+        "B": "BIZERBA",
+        "C": "METTLER SICS",
+        "I": "SARTORIUS",
+        "M": "METTLER",
+        "S": "METTLER SICS",
+        "Y": "SARTORIUS_MULTI",
+        "R": "PRECIA SLAVE",
+        "T": "TOLEDO",
+        "P": "PRECIA RUBIS",
+        "X": "METTLER_MULTI",
+        "D": "METTLER_MULTI SICS",
+        "E": "METTLER_MULTI SICS 2",
+        "N": "METTLER IND780",
+        "O": "METTLER IND780 SICS 2"
+      },
+      "OrderCategory": {
+        "D": "直接工单",
+        "F": "处方工单",
+        "X": "ERP工单",
+        "S": "指定输出"
+      },
+      "OrderType": {
+        "W": "称量阶段",
+        "M": "生产阶段",
+        "P": "包装阶段",
+        "O": "其他阶段"
+      },
+      "OrderStatus": {
+        "M": "可编辑的",
+        "L": "已发布",
+        "I": "生产中",
+        "T": "生产终止",
+        "C": "已关闭",
+        "A": "已归档",
+        "D": "已删除"
+      },
+      "ActionState": {
+        "A": "待混料",
+        "B": "正在混料",
+        "N": "不能混料",
+        "R": "已经混料"
+      },
+      "HazardPreventionLanguage": {
+        "ZH_CN": "简体中文",
+        "EN_US": "英文(美国)"
+      },
+      "BalanceCategory": {
+        "B": "天平",
+        "S": "地磅"
+      },
+      "ConnectionType": {
+        "ETH": "以太网",
+        "COM": "串口"
+      },
+      "ProtocolType": {
+        "TCP": "TCP",
+        "UDP": "UDP"
+      },
+      "CalibrationType": {
+        "A": "每天",
+        "E": "每周",
+        "I": "每两周",
+        "M": "每月",
+        "T": "每三个月",
+        "X": "每半年",
+        "L": "每年"
+      },
+      "CleanType": {
+        "W": "按工单清洁",
+        "M": "按物料清洁"
+      },
+      "FlowControlType": {
+        "N": "无",
+        "X": "XON/XOFF",
+        "C": "RTS/CTS"
+      },
+      "CheckType": {
+        "N": "无",
+        "E": "奇数",
+        "O": "偶数"
+      },
+      "CalibrationTimeUnit": {
+        "M": "分钟",
+        "D": "天"
+      },
+      "WeighStatus": {
+        "N": "不可称量",
+        "W": "待称量",
+        "P": "称量中",
+        "T": "称量完成"
+      }
+    },
+    "product": {
+      "calibration": {
+        "balanceCategory": "衡器",
+        "calibrationType": "校准类型",
+        "effection": "有效性",
+        "tolerance": "过期后有效时间",
+        "calibrationNumber": "称重数",
+        "isMultiCalibration": "多范围校准",
+        "isDifferentWeigh": "不同称量",
+        "step": "步骤",
+        "effectType": {
+          "A": "1 天",
+          "E": "7 天",
+          "I": "14 天",
+          "M": "1 月",
+          "T": "3 月",
+          "X": "6 月",
+          "L": "12 月"
+        }
+      },
+      "weights": {
+        "poise": "名称",
+        "weight": "重量",
+        "unit": "单位"
+      },
+      "balanceCleanSetting": {
+        "site": "厂区名称",
+        "ruleType": "规则类型",
+        "code": "规则编码",
+        "name": "规则名称"
+      },
+      "balancePrecision": {
+        "weighWorkstation": "称量站和衡器号",
+        "rangeNumber": "范围N°",
+        "minRange": "最小范围",
+        "maxRange": "最大范围",
+        "balanceAccuracy": "偏差",
+        "tolerance": "校准公差",
+        "balance": "衡器"
+      },
+      "balance": {
+        "bralication": "校准",
+        "workStation": "工作站",
+        "code": "编码",
+        "name": "名称",
+        "isUseCertificate": "使用证书",
+        "certificateAlarm": "有效期前警告",
+        "com": "COM口",
+        "platformSeq": "台数",
+        "category": "类型",
+        "minCapacity": "最小容量",
+        "maxCapacity": "最大容量",
+        "unit": "单位",
+        "lastCalibrationDate": "衡器最近的一次校准时间",
+        "certificateID": "证书ID",
+        "certificateStartDate": "证书开始日期",
+        "certificateEndDate": "证书结束日期",
+        "port": "硬件COM口",
+        "bps": "波特率",
+        "check": "检验位",
+        "dataBit": "数据位",
+        "bitStop": "结束位",
+        "control": "控制",
+        "connectionType": "接口连接类型",
+        "ip": "IP地址",
+        "ethernetPort": "以太网端口",
+        "protocol": "协议类型",
+        "communicationDelay": "通信频率",
+        "communicationRetryNumber": "通信重新连接最大尝试次数",
+        "communicationRetryDelay": "通信重新连接间隔时间",
+        "stabilityRetryNumber": "稳定称量值最大尝试次数",
+        "stabilityRetryDelay": "稳定称量值尝试间隔时间",
+        "bargraphDelay": "条状图频率",
+        "isResetBalanceTare": "称量重置天平皮重:称量之前的校验",
+        "isResetTare": "是否重置皮重:称量中重置",
+        "balanceType": "品牌/型号",
+        "balancePrecision": "衡器精度",
+        "balancePoise": "关联砝码",
+        "calibrationHistory": "校准历史",
+        "weighHistory": "称量信息",
+        "info": {
+          "relation": "关联",
+          "range": "范围",
+          "calibration": "校准设置",
+          "rangeInfo": "范围信息",
+          "calibrationInfo": "校准信息",
+          "actions": "操作",
+          "nowCertificate": "当前证书",
+          "newCertificate": "新证书",
+          "certificate": "证书",
+          "rangeTips": "范围设置最终值必须为{num}"
+        },
+        "validateMessages": {
+          "notExceedEnd": "不得大于结束日期",
+          "notLessThanStart": "不得小于起始日期",
+          "minNum": "输入的值不得小于0",
+          "comMaxNum": "输入的值不得大于99",
+          "alarmMaxNum": "输入的值不得大于999",
+          "maxCapacityRule": "输入的值不得小于最小容量"
+        }
+      }
+    },
+    "calibrationHistory": {
+      "action": "操作类型",
+      "comment": "操作注释",
+      "calibrationDate": "校准时间",
+      "workCenter": "工作中心",
+      "workstation": "工站",
+      "operator": "校准操作人",
+      "platform": "台数",
+      "calibrationType": "校准周期",
+      "weighSeq": "称重数",
+      "code": "衡器编码",
+      "rangeNumber": "范围编号",
+      "tolerance": "公差",
+      "toleranceUnit": "公差单位",
+      "poise": "砝码名称",
+      "poiseWeight": "砝码重量",
+      "caliberationWeight": "称量重量",
+      "caliberationWeightUnit": "单位",
+      "calibrationFinDate": "有效性结束日期",
+      "archiveDate": "归档时间",
+      "extraInfo": {
+        "calibrationState": "校准状态",
+        "calibrationInfo": "校准信息",
+        "calibrationStatus": "校准环境",
+        "calibrationEndDate": "有效期结束日期",
+        "operator": "操作员",
+        "operateTime": "操作日期",
+        "balance": "衡器",
+        "platForm": "台",
+        "rangeMin": "最小容量",
+        "rangeMax": "最大容量",
+        "weightNum": "称重数",
+        "completeNum": "已执行的称重",
+        "weightUnit": "称重单元",
+        "calibrationDate": "校准日期",
+        "calibrationFinDate": "有效性结束日期",
+        "calibrationType": "校准类型"
+      },
+      "validateMessages": {
+        "cancelCalibration": "取消校准后,该数据不可使用。",
+        "cancelNoRepeat": "不可重复取消校准",
+        "moreThanCalibration": "同校准类型下,同一范围不得超过{num}次校准"
+      }
+    },
+    "weightHistory": {
+      "workOrder": "工单号",
+      "version": "工单版本",
+      "orderStatus": "工单状态",
+      "lot": "批次号",
+      "phase": "阶段",
+      "step": "次序",
+      "dosage": "剂量",
+      "action": "行动",
+      "weighSeq": "同一工单的第几次称量",
+      "materialWeighSeq": "称量次数",
+      "operator": "操作员",
+      "workStation": "工作站",
+      "workCenter": "工作中心",
+      "cleanDate": "清洁时间",
+      "cleanType": "清洁类型",
+      "materialCode": "物料编码",
+      "materialUnit": "物料单位",
+      "materialPotency": "物料理论效价",
+      "materialPotency2": "物料理论效价2",
+      "materialDensity": "物料密度",
+      "stockUnit": "库存单位",
+      "materialLot": "物料批次号",
+      "emplacement": "物料库位",
+      "container": "容器号",
+      "containerID": "容器识别号",
+      "lotPotency": "效价",
+      "lotPotency2": "批次效价2",
+      "lotDensity": "批次密度",
+      "lotStatus": "批次状态",
+      "isUseLotPotency": "是否使用批次效价1",
+      "isUseLotPotency2": "是否使用批次效价2",
+      "weighMode": "称量模式",
+      "tolerance": "公差",
+      "isDensityTagIndex": "密度标签标记",
+      "concordanceNumber": "一致性数,物料平衡数",
+      "startGross": "开始毛重",
+      "finishGross": "结束毛重",
+      "calculateNet": "计算出的净重",
+      "containerTare": "容器皮重",
+      "tare": "皮重",
+      "net": "净重",
+      "gross": "毛重",
+      "weighUnit": "称量单位",
+      "weighGap": "称量偏差",
+      "isSameContainer": "同一容器指示器",
+      "palletQty": "托盘数",
+      "containerQty": "容器数",
+      "weighStartDate": "开始称量时间",
+      "weighFinDate": "结束称量时间",
+      "isFinContainer": "是否最终容器",
+      "isForceWeigh": "是否强制称量",
+      "isLotForce": "是否强制批",
+      "isRespectLot": "是否正确的批次",
+      "isLabelPrinted": "是否已打印标签",
+      "labelQty": "标签数",
+      "labelCode": "标签编码",
+      "countingUnit": "计数单位",
+      "labelPrintDate": "出标时间",
+      "balancePrecision": "衡器使用精度",
+      "taskID": "集中混料的任务id",
+      "reconciliation": "集中操作",
+      "reconciliationWS": "集中检查工作站",
+      "reconciliationOperator": "集中检查操作员",
+      "reconciliationDate": "集中检查的日期",
+      "combination": "混合（配料）",
+      "combinationOperator": "混合（配料）操作人",
+      "combinationTime": "混合（配料）时间",
+      "combinationWS": "混合（配料）工作站",
+      "srcEquipmentCode": "源设备编码",
+      "dstEquipmentCode": "目标设备编码",
+      "weighReconciliationDate": "称量后集中检查的日期",
+      "weighCombinationDate": "称量后混合（配料）的日期",
+      "balance": "衡器信息",
+      "weighLine": "称量物料",
+      "extraInfo": {
+        "label": "标签",
+        "theoryValue": "理论值",
+        "realValue": "实际值",
+        "materialList": "物料列表:",
+        "workOrderList": "工单列表:",
+        "workStation": "称量单元:",
+        "workCenter": "工作中心:",
+        "time": "时间:",
+        "times": "有 {num} 次称量",
+        "operator": "操作员:",
+        "workOrder": "工单:",
+        "batch": "批次:",
+        "product": "产品:",
+        "surplus": "剩余量",
+        "totalWeight": "总重量",
+        "weighed": "已称量",
+        "upperLimit": "上限",
+        "lowerLimit": "下限",
+        "hazard": "危险防范信息",
+        "workOrderCleanInfo": "工单清洁规则信息",
+        "materialCleanInfo": "物料清洁规则信息",
+        "workOrderInfo": "工单明细",
+        "releaseDate": "发布日期",
+        "orderType": "工单类型",
+        "surplusVal": "{unit} / {num}{unit}",
+        "startWeighing": "即将称重 :",
+        "unopenScale": "秤称量未开启,未获取到数据",
+        "tareError": "同一批次物料称量,皮重不一致"
+      },
+      "tips": {
+        "errorCheckTip": "误差!天平误差: {balanceErr}>允许误差: {allowErr}; 你确认要称量吗?",
+        "completeWeighing": "该物料已完成称量",
+        "unWeighable": "该物料不可称量",
+        "compensateErr": "原物料未全部称量完成,该补偿物料不能进行称量",
+        "compensateY": "效价补偿不需称量",
+        "compensateX": "工单补偿不需称量"
+      }
+    },
+    "formulaAudit": {
+      "date": "日期",
+      "formulaCode": "编码",
+      "formulaVersion": "版本",
+      "action": "操作",
+      "username": "用户名",
+      "workCenter": "工作中心",
+      "workStation": "工作站",
+      "createdAt": "创建日期",
+      "signOne": "签名1",
+      "messageOne": "备注1",
+      "signTwo": "签名2",
+      "messageTwo": "备注2",
+      "description": "操作内容"
+    }
+  },
+  "validation": {
+    "required": "字段不能为空",
+    "lengthLimit": "字段长度不能超过10",
+    "email": "邮箱格式不正确"
+  },
+  "noDataText": "无可用数据",
+  "carousel": {
+    "prev": "以前的视觉",
+    "next": "下一个视觉"
+  },
+  "validate": {
+    "number": {
+      "infinite": "请输入格式正确的数值",
+      "phone": "请输入正确手机号",
+      "fax": "请输入正确传真号,例如:010-1234567",
+      "IDCard": "请输入正确的身份证号",
+      "fixed": "请输入{min}位数字【仅限数字】",
+      "more": "至少输入{min}位数字【仅限数字】",
+      "section": "请输入{min}-{max}位数字【仅限数字】"
+    },
+    "commonUse": {
+      "infinite": "{name}由字母、数字、/_-组成,不能以特殊字符开头",
+      "englist": "{name}由英文字母组成",
+      "email": "请输入正确的邮箱地址",
+      "fixed": "请输入{min}位字母、数字",
+      "more": "至少输入{min}位数字、字母",
+      "section": "请输入{min}-{max}位字母、数字",
+      "letterFixed": "{min}位字母数字组合,并以字母开头",
+      "letterMore": "以字母开头,字母数字组合不得少于{min}位",
+      "letterSection": "以字母开头,字母数字长度在{min}-{max}间",
+      "ltCount": "请输入大于0的数字"
+    },
+    "special": "不得连续输入3位以上特殊字符",
+    "chinese": "请输入汉字",
+    "nameReg": "{name}由字母、数字、汉字、/_-组成,不能以特殊字符开头"
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "menus": {
+    "unknow": "未命名",
+    "material": {
+      "this": "物料管理",
+      "materialMgt": "物料维护",
+      "sampleRule": "取样规则",
+      "hazardPrecaution": "危险防范",
+      "materialTrace": "物料追溯"
+    },
+    "formula": {
+      "this": "处方管理",
+      "formulaMgt": "处方管理",
+      "formulaTrace": "处方追溯"
+    },
+    "WO": {
+      "this": "工单管理",
+      "WOMgt": "工单管理",
+      "WOTrace": "工单追溯"
+    },
+    "MI": {
+      "this": "MI管理",
+      "prdMapMI": "产品与MI关系维护",
+      "MIDesign": "MI设计",
+      "MIExecution": "MI执行",
+      "BRReview": "批记录复核",
+      "Simulation": "生产模拟",
+      "MITrace": "MI追溯"
+    },
+    "lot": {
+      "this": "批次管理",
+      "lotMgt": "批次管理",
+      "lotTrace": "批次追溯"
+    },
+    "weighing": {
+      "this": "称量管理",
+      "weightMgt": "砝码维护",
+      "calibrationRule": "校准规则",
+      "cleanRule": "清洁规则",
+      "balanceCfg": "衡器配置",
+      "balancecalibration": "衡器校准",
+      "balanceTrace": "衡器追溯",
+      "weighing": "称量工单",
+      "weighingTrace": "称量追溯"
+    },
+    "QC": {
+      "this": "质量管理",
+      "deviationMgt": "偏差管理",
+      "exceptionMgt": "异常处理",
+      "QC": "质检"
+    },
+    "equipment": {
+      "this": "设备管理",
+      "equipmentProperty": "设备属性",
+      "equipmentCfg": "设备配置",
+      "equipmentTrace": "设备追溯"
+    },
+    "inv": {
+      "this": "库存管理",
+      "packingWay": "包装方式维护",
+      "supplierMgt": "供应商管理",
+      "receipt": "批次接收",
+      "palletMgt": "托盘管理",
+      "containerMgt": "容器管理",
+      "emplacementMgt": "库位管理",
+      "zoneMgt": "库区管理",
+      "sectorMgt": "区段管理",
+      "stockMgt": "库存管理",
+      "intermediateMgt": "中间站管理",
+      "shipping": "生产入库",
+      "invTracew": "库存追溯"
+    },
+    "factory": {
+      "this": "工厂信息",
+      "enterprise": "企业信息",
+      "site": "厂区管理",
+      "area": "区域管理",
+      "location": "位置管理",
+      "WC": "工作中心",
+      "WS": "工作站",
+      "device": "外设管理"
+    },
+    "label": {
+      "this": "标签管理"
+    },
+    "auditTrace": {
+      "this": "审计追溯",
+      "factory": {
+        "this": "工厂信息",
+        "enterpriseMgt": "企业管理",
+        "siteMgt": "厂区管理:",
+        "areaMgt": "区域管理",
+        "locationMgt": "位置管理"
+      },
+      "material": {
+        "this": "物料管理",
+        "hazardPrecaution": "危险防范",
+        "sampleRule": "取样规则"
+      },
+      "formulaMgt": "处方管理",
+      "mfgLot": "生产批次",
+      "allLot": "全部批次",
+      "WOMgt": "工单管理",
+      "MIMgt": "MI管理",
+      "inv": {
+        "this": "库存",
+        "emplacementUse": "库位使用",
+        "zoneMgtAndUse": "库区管理及使用",
+        "materialFowLot": "物流批次"
+      },
+      "equipment": {
+        "this": "设备",
+        "equipmentMgt": "设备管理",
+        "equipmentUse": "设备使用",
+        "equipmentMgtAndUse": "设备管理及使用"
+      },
+      "balance": {
+        "this": "衡器",
+        "balanceMgt": "衡器管理",
+        "balanceUse": "衡器使用"
+      },
+      "sysMgt": "系统管理",
+      "label": {
+        "this": "标签",
+        "labelMgt": "标签管理",
+        "labelPrint": "标签打印"
+      },
+      "user": {
+        "this": "用户",
+        "accessControl": "访问控制",
+        "useLog": "使用记录"
+      },
+      "Genealogy": "谱系追溯"
+    },
+    "integration": {
+      "this": "集成接口"
+    },
+    "report": {
+      "this": "报表"
+    },
+    "monitor": {
+      "this": "看板"
+    },
+    "sysMgt": {
+      "this": "系统管理",
+      "accessControl": {
+        "this": "访问控制",
+        "userMgt": "用户管理",
+        "userGroupMgt": "用户组管理",
+        "rightMgt": "权限管理",
+        "menuMgt": "菜单管理",
+        "signatureMgt": "签名管理",
+        "orgMgt": "组织机构管理"
+      },
+      "sysSetting": {
+        "this": "系统维护",
+        "parameterCfg": "参数配置",
+        "serverCfg": "服务器配置",
+        "multiLanguage": "多语言支持",
+        "sysLock": "系统锁定",
+        "traceMgt": "追溯管理",
+        "dataDictionaryMgt": "数据字典管理",
+        "moduleMgt": "模块管理",
+        "sysMonitor": "系统监视"
+      },
+      "sysLog": {
+        "this": "日志管理",
+        "runningLog": "运行日志",
+        "securityLog": "安全日志",
+        "useLog": "使用日志"
+      },
+      "dataMgt": {
+        "this": "数据管理",
+        "dataBackup": "数据备份",
+        "dataArchive": "数据归档",
+        "dataRecovery": "数据恢复",
+        "dataTransfer": "数据迁移"
+      }
+    },
+    "externalSys": {
+      "this": "External System",
+      "hollysys": "Hollysys"
+    },
+    "home": "首页",
+    "welcome": "欢迎"
+  }
+}

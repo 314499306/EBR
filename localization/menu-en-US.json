@@ -1,0 +1,187 @@
+{
+  "menus": {
+    "unknow": "Unknow",
+    "material": {
+      "that": "Material Management",
+      "materialMgt": "Material Maintenance",
+      "sampleRule": "Sampling Rules",
+      "hazardPrecaution": "Hazard and Precautionary Statements",
+      "materialTrace": "Material Trace"
+    },
+    "formula": {
+      "that": "Formula Management",
+      "formulaMgt": "Formula Management",
+      "formulaTrace": "Formula Trace"
+    },
+    "WO": {
+      "that": "WO Management",
+      "WOMgt": "WO Management",
+      "WOTrace": "WO Trace"
+    },
+    "MI": {
+      "that": "MI Management",
+      "prdMapMI": "Product and MI Relationship Maintenance",
+      "MIDesign": "MI Design",
+      "MIExecution": "MI Execution",
+      "BRReview": "Batch Record Review",
+      "Simulation": "Production Simulation",
+      "MITrace": "MI Trace"
+    },
+    "lot": {
+      "that": "Lot Management",
+      "lotMgt": "Lot Management",
+      "lotTrace": "Lot Trace"
+    },
+    "weighing": {
+      "that": "weighing Management",
+      "weightMgt": "weight Maintenance",
+      "calibrationRule": "Calibration Rules",
+      "cleanRule": "Cleaning Rules",
+      "balanceCfg": "Balance Configuration",
+      "balancecalibration": "Balance Calibration",
+      "balanceTrace": "Balance Trace",
+      "weighing": "Weighing WO",
+      "weighingTrace": "Weighing Trace"
+    },
+    "QC": {
+      "that": "Quality Management",
+      "deviationMgt": "Deviation Management",
+      "exceptionMgt": "Exception Management",
+      "QC": "Quality Inspection"
+    },
+    "equipment": {
+      "that": "Equipment Management",
+      "equipmentProperty": "Equipment Properties",
+      "equipmentCfg": "Equipment Configuration",
+      "equipmentTrace": "Equipment Trace"
+    },
+    "inv": {
+      "that": "Inventory Management",
+      "packingWay": "Packaging Method Maintenance",
+      "supplierMgt": "Supplier Management",
+      "receipt": "Receipt Lot",
+      "palletMgt": "pallet Management",
+      "containerMgt": "Container Management",
+      "emplacementMgt": "Emplacement Management",
+      "zoneMgt": "Zones Management",
+      "sectorMgt": "Setors Management",
+      "stockMgt": "Inventory Management",
+      "intermediateMgt": "Intermediate Station Management",
+      "shipping": "Stock In",
+      "invTracew": "Inventory Trace"
+    },
+    "factory": {
+      "that": "Plant Information",
+      "enterprise": "Enterprise Information",
+      "site": "Site Management",
+      "area": "Area Management",
+      "location": "Location Management",
+      "WC": "Work Center",
+      "WS": "Work Station",
+      "device": "Device Management"
+    },
+    "label": {
+      "that": "Label Management"
+    },
+    "auditTrace": {
+      "that": "Audit Trace",
+      "factory": {
+        "that": "Plant Information",
+        "enterpriseMgt": "Enterprise Management",
+        "siteMgt": "Site Management:",
+        "areaMgt": "Area Management",
+        "locationMgt": "Location Management"
+      },
+      "material": {
+        "that": "Material Management",
+        "hazardPrecaution": "Hazard and Precautionary statements",
+        "sampleRule": "Sampling Rules"
+      },
+      "formulaMgt": "Formula Management",
+      "mfgLot": "Manufacturing Lot",
+      "allLot": "Global Lot",
+      "WOMgt": "WO Management",
+      "MIMgt": "MI Management",
+      "inv": {
+        "that": "Inventory",
+        "emplacementUse": "Emplacement Usage",
+        "zoneMgtAndUse": "Zone Management and Usage",
+        "materialFowLot": "Logistics Lot"
+      },
+      "equipment": {
+        "that": "Equipment",
+        "equipmentMgt": "Equipment Management",
+        "equipmentUse": "Equipment Usage",
+        "equipmentMgtAndUse": "Equipment Management and Usage"
+      },
+      "balance": {
+        "that": "Balance",
+        "balanceMgt": "Balance Management",
+        "balanceUse": "Balance Usage"
+      },
+      "sysMgt": "System Management",
+      "label": {
+        "that": "Label",
+        "labelMgt": "Label Management",
+        "labelPrint": "Label Printing"
+      },
+      "user": {
+        "that": "User",
+        "accessControl": "Access Control",
+        "useLog": "Use Record"
+      },
+      "Genealogy": "Genealogy Trace"
+    },
+    "integration": {
+      "that": "Integrated Interface"
+    },
+    "report": {
+      "that": "Table"
+    },
+    "monitor": {
+      "that": "KANBAN"
+    },
+    "sysMgt": {
+      "that": "System Management",
+      "accessControl": {
+        "that": "Access Control",
+        "userMgt": "User Management",
+        "userGroupMgt": "User Group Management",
+        "rightMgt": "Right Management",
+        "menuMgt": "Menu Management",
+        "signatureMgt": "Electronic Signature Management",
+        "orgMgt": "Organization Management"
+      },
+      "sysSetting": {
+        "that": "System Maintenance",
+        "parameterCfg": "Parameter Configuration",
+        "serverCfg": "Server Configuration",
+        "multiLanguage": "Multi-language Support",
+        "sysLock": "System Locking",
+        "traceMgt": "Trace Management",
+        "dataDictionaryMgt": "Data Dictionary Management",
+        "moduleMgt": "Module Management",
+        "sysMonitor": "System Monitoring"
+      },
+      "sysLog": {
+        "that": "Log Management",
+        "runningLog": "Running Log",
+        "securityLog": "Security Log",
+        "useLog": "Use Log"
+      },
+      "dataMgt": {
+        "that": "Data Management",
+        "dataBackup": "Data Backup",
+        "dataArchive": "Data Archiving",
+        "dataRecovery": "Data Recovery",
+        "dataTransfer": "Data Migration"
+      }
+    },
+    "externalSys": {
+      "that": "External System",
+      "hollysys": "Hollysys"
+    },
+    "home": "Home",
+    "welcome": "welcome"
+  }
+}
