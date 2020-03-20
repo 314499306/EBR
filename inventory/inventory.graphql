@@ -1,0 +1,403 @@
+"""
+库区信息
+"""
+type Zone {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "库区编码,最大长度:10"
+  code: String! @unique
+  "库区名称,最大长度:100"
+  name: String
+  "说明,最大长度:200"
+  desc: String
+  "位置编码"
+  location: Location!
+
+  "库位管理"
+  emplacements: [Emplacement!]
+}
+
+"""
+库位信息:
+"""
+type Emplacement {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "库位编码,最大长度:10"
+  code: String! @unique
+  "库位名称,最大长度:100"
+  name: String
+
+  "库位类型,最大长度:1"
+  type: EmplacementType! @default(value: N)
+  "存储类型,最大长度:1"
+  stockType: StockType @default(value: P)
+  "实体数量:定义的库位容量,最大长度:(10,2)"
+  entityNum: Float @default(value: 1)
+  "实体类型:存储类型为P时,显示托盘类型表里的托盘类型,如P1;为C时,显示容器类型表里的容器类型,如C2.最大长度:3"
+  entityType: String
+  "总容量:实体类型转换为P1/C1后的库位容量,最大长度:(10,2)"
+  totalCapacity: Float
+  "剩余容量:与P1托盘类型相比的剩余容量,最大长度:(10,2)"
+  remainCapacity: Float
+  "预留容量:计划存储的实体数量,最大长度:(10,2)"
+  reserveCapacity: Float
+  "无限容量:定义该库位不限制容量"
+  isMassStorage: Boolean @default(value: false)
+  "冷藏:定义该库位是否为冷藏库位"
+  isFrige: Boolean @default(value: false)
+  "安全:定义该库位是否存放的是麻醉剂"
+  isSafe: Boolean @default(value: false)
+  "高度:该库位距离地面高度,最大长度:(3,0)"
+  height: Int
+  "特性列表:该库位存放的物料特性类型,来自数据字典,最大长度:4"
+  list: String @dictionary(type: MTL_LIST_TYPE)
+  "是否可分配:限制该库位是否可以作为物料接收的目标库位"
+  isAssignable: Boolean @default(value: true)
+  "重量约束:限制该库位的存放物料的重量,最大长度:(10,3)"
+  maxMass: Float
+  "高度限制:限制该库位的存放物料的高度,最大长度:(3,0)"
+  maxHeight: Int
+  "是否不允许混批:限制该库位是否只能放同一批次的物料"
+  isSingleLot: Boolean @default(value: false)
+
+  "托盘"
+  pallets: [Pallet!]
+  "容器"
+  containers: [Container!]
+
+  "库区"
+  zone: Zone
+}
+
+"""
+基础表:供应商信息
+"""
+type Supplier {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  "供应商编码,最大长度:30"
+  code: String! @unique
+  "供应商名称,最大长度:100"
+  name: String!
+  "地址1,最大长度:200"
+  adresse1: String
+  "地址2,最大长度:200"
+  adresse2: String
+  "地址3,最大长度:200"
+  adresse3: String
+  "地址4,最大长度:200"
+  adresse4: String
+  "电话1,最大长度:20"
+  tel: String
+  "电话2,最大长度:20"
+  tel2: String
+  "传真,最大长度:20"
+  fax: String
+  "联系地址,最大长度:400"
+  contact: String
+  "类别,最大长度:30"
+  classification: String
+}
+
+"""
+托盘类型
+"""
+type PalletType {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "类型:托盘类型,最大长度:3"
+  code: String! @unique
+  "名称:类型名称,最大长度:100"
+  name: String!
+  "高:托盘高度,最大长度:(3,0)"
+  height: Int! @default(value: 100)
+  "长:托盘长度,最大长度:(3,0)"
+  length: Int! @default(value: 100)
+  "宽:托盘宽度,最大长度:(3,0)"
+  width: Int! @default(value: 100)
+  "平均质量,最大长度:(10,3)"
+  avgMass: Float! @default(value: 100.000)
+  "比例:比例系数,最大长度:(10,3)"
+  coefficient: Float! @default(value: 1.00)
+
+  "皮重:托盘皮重,最大长度:(10,3)"
+  palletTare: Float!
+  "皮重单位:托盘皮重单位,最大长度:4"
+  tareUnit: String! @dictionary(type: MASS_UNIT2) @default(value: "kg")
+}
+
+"""
+容器类型
+"""
+type ContainerType {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "类型:容器类型,最大长度:3"
+  code: String! @unique
+  "名称:类型名称,最大长度:100"
+  name: String!
+  "高:容器高度,最大长度:(3,0)"
+  height: Int! @default(value: 100)
+  "长:容器长度,最大长度:(3,0)"
+  length: Int! @default(value: 100)
+  "宽:容器宽度,最大长度:(3,0)"
+  width: Int! @default(value: 100)
+  "平均质量,最大长度:(10,3)"
+  avgMass: Float! @default(value: 100.000)
+  "比例:比例系数,最大长度:(10,3)"
+  coefficient: Float! @default(value: 1.00)
+
+  "皮重:容器皮重,最大长度:(10,3)"
+  containerTare: Float!
+  "皮重单位:容器皮重单位,最大长度:"
+  tareUnit: String! @dictionary(type: MASS_UNIT2) @default(value: "kg")
+}
+
+"""
+托盘信息
+"""
+type Pallet {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "托盘编码,最大长度:30"
+  code: String! @unique
+  "事务类型:来自批次接收,不可编辑,最大长度:30"
+  transactionType: String @dictionary(type: RECEIPT_TYPE)
+  "物料接收的单号,最大长度:30"
+  orderNumber: String
+  "物料接收的序列号,最大长度:5"
+  seqNo: String
+  "物料编码,最大长度:30"
+  materialCode: String!
+  "物料名称,最大长度:100"
+  materialName: String!
+  "托盘状态,最大长度:1"
+  status: PalletStatus!
+  "是否满装"
+  isFull: Boolean
+  "托盘先前库位的编码,最大长度:10"
+  previousEmplacement: String
+  "初始库位编码,最大长度:10"
+  originalEmplacement: String!
+  "取样库位编码,最大长度:10"
+  samplingEmplacement: String
+  "目标库位编码,最大长度:10"
+  targetEmplacement: String!
+  "托盘皮重,最大长度:(10,3)"
+  palletTare: Float
+  "皮重单位,最大长度:4"
+  tareUnit: String @dictionary(type: MASS_UNIT2) @default(value: "kg")
+  "标准容量:托盘的标准容量,理论值,最大长度:(10,6)"
+  theoreticalQuantity: Float!
+  "单位:托盘内物料单位,使用物料的库存单位,最大长度:4"
+  # palletUnit: String @dictionary(type: MASS_UNIT) @default(value: "kg")
+  unit: String!
+  "托盘序号:接收时,同包装类型的,同一批次的托盘序号;退料时,为固定值1 最大长度:(10,0)"
+  palletSeq: Int!
+  "托盘数量:接收时,同包装类型的,同一批次托盘总数;退料时,为固定值1最大长度:(10,0)"
+  palletQuantity: Int!
+  # "上一次托盘操作的时间"
+  # lastPalletActionDate: DateTime@systemDate
+  "托盘标签,最大长度:60"
+  label: String
+  "托盘的标签类型,最大长度:30"
+  labelType: String
+  "上一次集中操作的日期,默认显示格式与精度要求:YYYY-MM-DD"
+  reconciliationDate: DateTime @systemDate
+  "接收版本号:暂不使用,最大长度:(2,0)"
+  receptVersion: Int
+  "声明版本号:暂不使用,最大长度:(2,0)"
+  declareVersion: Int
+  "最后操作日期,默认显示格式与精度要求:YYYY-MM-DD"
+  lastActionDate: DateTime @systemDate
+  "是否常规托盘:分为常规托盘和系统虚拟托盘;虚拟托盘用于直接用容器存储的场景,使用容器编号作为虚拟托盘编号"
+  isCommonPallet: Boolean @default(value: true)
+  "批次:托盘所承载的物料批次号"
+  lot: Lot!
+  "容器"
+  containers: [Container!]
+  "托盘类型:PalletType+ContainerType,即包含虚拟类型的托盘"
+  palletType: String!
+  "库位:当前位置,核准后为初始库位,需取样的,在取样时为取样库位,入库后为目标库位"
+  emplacement: Emplacement
+}
+
+"""
+容器信息
+"""
+type Container {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "物料编码,最大长度:30"
+  materialCode: String!
+  "物料名称,最大长度:100"
+  materialName: String!
+
+  "同一批次的容器序号:如1,含退料入库的容器,最大长度:(4,0)"
+  containerSeq: Int!
+  "同一批次的容器号:如0001,最大长度:4"
+  containerNum: String!
+
+  "容器状态:来自批次接收,与批次状态一致,不可编辑,最大长度:30"
+  containerStatus: LotStatus!
+  "容器标识:由批次号和容器号组成,如180029  0001,最大长度:60"
+  identifier: String! @unique
+  # "存放容器的托盘编码,最大长度:30"
+  # palletCode: String
+  "容器皮重"
+  containerTare: Float!
+  "容器皮重单位,最大长度:4"
+  containerTareUnit: String @dictionary(type: MASS_UNIT2) @default(value: "kg")
+  "容器标准容量:物料接收时容器的存储量,最大长度:(10,6)"
+  theoreticalWeight: Float!
+  "容器已存量:实际物料剩余量,最大长度:(10,6)"
+  remainingWeight: Float!
+  "是否已结束容器"
+  isFinishedContainer: Boolean @default(value: false)
+  "二次包装说明,最大长度:200"
+  secondaryPack: String
+  "本次接收/声明的的容器序号,只统计本次接收/声明,退料入库的容器无此序号,最大长度:(4,0)"
+  receiptContainerNum: Int!
+  "本次接收/声明的容器总数,只统计本次接收/声明,退料入库的容器无此信息,即不统计退料入库的,最大长度:(4,0)"
+  receiptContainerCount: Int!
+
+  # "实际库位编码,最大长度:10"
+  # emplacementCode: String
+  "容器取样状态,最大长度:30"
+  sampleStatus: LotSampleStatus!
+  "容器取样数,取样的次数,最大长度:(4,0)"
+  sampleCount: Int!
+  "容器标签类型,最大长度:30"
+  containerLabelType: String
+  "定义容器状态是否为拒绝的"
+  isRejected: Boolean @default(value: false)
+  "标签编码,最大长度:60"
+  label: String
+  "接收的版本号,最大长度:(2,0)"
+  receptVersion: Int! @default(value: 0)
+  "生产声明的版本号,最大长度:(2,0)"
+  declareVersion: Int! @default(value: 0)
+  "容器是否是打开的:若容器为打开状态,则根据物料里定义的打开后的保质期来自动计算物料剩余的保质期"
+  isContainerOpen: Boolean @default(value: false)
+  "有效期:物料有效期,默认显示格式与精度要求:YYYY-MM-DD"
+  expirationDate: DateTime
+
+  "批次"
+  lot: Lot!
+  "托盘:存放容器的托盘编码"
+  pallet: Pallet!
+  "容器类型"
+  containerType: ContainerType!
+  # "库位"
+  # emplacement: Emplacement
+}
+
+"""
+托盘包装方式:
+唯一索引: materialCode + supplierCode
+"""
+type PalletPackingWay {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  "物料编码,最大长度:30"
+  materialCode: String!
+  "物料名称,最大长度:100"
+  materialName: String!
+  "供应商编码:来自供应商基础数据,最大长度:30"
+  supplierCode: Supplier! @relation(link: INLINE)
+
+  "托盘类型,最大长度:3"
+  palletType: String! @default(value: "P1")
+  "托盘皮重,最大长度:(10,3)"
+  palletTare: Float!
+  "托盘皮重单位,最大长度:4"
+  palletTareUnit: String! @dictionary(type: MASS_UNIT2)
+
+  "容器数量/托盘,最大长度:(5,0)"
+  containerNumber: Int!
+  "容器类型:最大长度:3"
+  containerType: String! @default(value: "C1")
+  "容器皮重,最大长度:(10,3)"
+  containerTare: Float!
+  "容器皮重单位,最大长度:4"
+  containerTareUnit: String! @dictionary(type: MASS_UNIT2)
+  "容器容量,最大长度:(10,3)"
+  containerMass: Float!
+  "二次包装方式:最大长度:200"
+  secondaaryPacking: String
+}
+
+"""
+库存:
+唯一索引:物料编码+批次号+库位编码
+"""
+type Inventory {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "物料编码,最大长度:30"
+  materialCode: String!
+  "物料名称,最大长度:100"
+  materialName: String!
+  "批次号,最大长度:30"
+  lot: Lot! @relation(link: INLINE)
+  "库位编码,最大长度:10"
+  emplacementCode: Emplacement! @relation(link: INLINE)
+  "某批次的库存总量,最大长度:(10,6)"
+  totalQuantity: Float!
+  "预留数量,最大长度:(10,6)"
+  reserveQuantity: Float!
+}
