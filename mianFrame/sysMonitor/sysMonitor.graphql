@@ -1,0 +1,16 @@
+"""
+系统监控配置表:
+"""
+type EBRConfig {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "键,最大长度:30"
+  propertyKey: String!
+  "值"
+  data: Json!
+}
