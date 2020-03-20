@@ -1,0 +1,215 @@
+"""
+企业信息
+"""
+type Enterprise {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "企业编码,最大长度:10"
+  code: String! @unique
+  "企业名称,最大长度:100"
+  name: String!
+
+  "厂区管理"
+  sites: [Site!]
+}
+
+"""
+厂区信息
+"""
+type Site {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "厂区编码,最大长度:10"
+  code: String! @unique
+  "厂区名称,最大长度:100"
+  name: String!
+  "地址1,最大长度:200"
+  address1: String
+  "地址2,最大长度:200"
+  address2: String
+  "地址3,最大长度:200"
+  address3: String
+  "地址4,最大长度:200"
+  address4: String
+  "时区: 备用,打印时会用到,可能从该字段取值,最大长度:100"
+  timeZone: String
+  "区域管理"
+  areas: [Area!]
+
+  "企业"
+  enterprise: Enterprise
+}
+
+"""
+区域信息:车间
+"""
+type Area {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "区域编码,最大长度:10"
+  code: String! @unique
+  "区域名称,最大长度:100"
+  name: String!
+  "说明,最大长度:200"
+  desc: String
+
+  "位置管理"
+  locations: [Location!]
+
+  "厂区"
+  site: Site
+}
+
+"""
+区段: 服务于位置的业务使用,不属于物理模型中的层,用来组织位置
+"""
+type Sector {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "区段编码,最大长度:10"
+  code: String! @unique
+  "区段名称,最大长度:100"
+  name: String!
+  "区段类型,最大长度:30"
+  type: String @dictionary(type: SECTOR_TYPE) @default(value: "Inv")
+  "存储物料类型,最大长度:30"
+  stockMaterialType: MaterialType
+  "说明,最大长度:200"
+  desc: String
+
+  "区段与位置关联"
+  locations: [Location!]
+}
+
+"""
+位置信息:产线、库区、工作中心
+"""
+type Location {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "位置编码,最大长度:10"
+  code: String! @unique
+  "位置名称,最大长度:100"
+  name: String!
+
+  "区域"
+  area: Area
+  "区段"
+  sector: Sector
+}
+
+"""
+工作中心
+"""
+type WorkCenter {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "工作中心编码,最大长度:30"
+  code: String! @unique
+  "工作中心名称,最大长度:100"
+  name: String!
+
+  "位置编码,最大长度:10"
+  location: Location!
+  # TODO: 捡料区段有可能调整为多选
+  "主要拣料区段,最大长度:200"
+  primaryPickingSector: String
+  "次要拣料区段,最大长度:200"
+  secondPickingSector: String
+  "主要减库存路径,最大长度:30"
+  primaryUnstockedPath: String
+  "次要减库存路径,最大长度:30"
+  secondUnstockedPath: String
+  "返回路径:区域、位置组成路径,对每一个区域或位置可定义一个工作中心,最大长度:30"
+  returnPath: String
+  # "打印机"
+  # printer: String
+
+  "关联工工作站"
+  workStations: [WorkStation!]
+  # "工单"
+  # workOrder: [WorkOrder!]
+}
+
+"""
+工站
+"""
+type WorkStation {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "工站编码,最大长度:30"
+  code: String! @unique
+  "工站名称,最大长度:100"
+  name: String!
+  "外设名称"
+  devices: [Device!]
+  "该站是否被登录"
+  isLogged: Boolean @default(value: false)
+  "工作站的最后使用日期:最后链接时间,默认显示格式与精度要求 YYYY-MM-DD HH24:MI:SS"
+  lastUsedDate: DateTime @systemDate
+
+  "工作中心"
+  workCenter: WorkCenter @relation(link: TABLE)
+}
+
+"""
+外部设备
+"""
+type Device {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "设备编码 唯一约束,最大长度:30"
+  code: String! @unique
+  "设备名称,最大长度:100"
+  name: String!
+  "设备类型,最大长度:30"
+  deviceType: DeviceType!
+  "设备地址 如:http://printer:3131/ ,最大长度:400"
+  address: String!
+  "工作站"
+  workStation: [WorkStation!]!
+  "状态 默认注册状态,最大长度:30"
+  status: DeviceStatus! @default(value: REGISTER)
+  "说明,最大长度:400"
+  description: String
+}
