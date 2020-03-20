@@ -1,0 +1,368 @@
+"""
+衡器信息
+"""
+type Balance {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  #通过衡器编码可以关联到‘外设设备’表,并可获取相应的信息,如衡器对应的工作站.
+  "衡器编码,最大长度:30"
+  code: String! @unique
+  "衡器名称,最大长度:100"
+  name: String! @unique
+  #衡器基础设置,在页面中对应复选框,默认为false不选中;当选中时,证书有效期到期前多少天警告的输入框才可使用.
+  "使用证书"
+  isUseCertificate: Boolean! @default(value: false)
+  "证书有效期到期前多少天警告,最大长度:(4,0)"
+  certificateAlarm: Int! @default(value: 0)
+  "衡器连接的com口,最大长度:(2,0)"
+  com: Int!
+  "台数序号:一拖多的情况,一个通讯口,挂多个称台,目前不考虑该业务,最大长度:(2,0)"
+  platformSeq: Int @default(value: 1)
+  "衡器种类,最大长度:1"
+  category: BalanceCategory!
+  "量程下限,最大长度:(10,3)"
+  minCapacity: Float!
+  "量程上限,最大长度:(10,3)"
+  maxCapacity: Float!
+  "衡器单位,最大长度:4"
+  unit: String! @dictionary(type: MASS_UNIT)
+  "衡器最近一次的校准日期,默认显示格式与精度要求:YYYY-MM-DD"
+  lastCalibrationDate: DateTime @systemDate
+  "证书ID,最大长度:30"
+  certificateID: String
+  "证书开始日期,默认显示格式与精度要求:YYYY-MM-DD"
+  certificateStartDate: DateTime
+  "证书结束日期,默认显示格式与精度要求:YYYY-MM-DD"
+  certificateEndDate: DateTime
+  "校准完成状态:用于判定衡器是否完成校准"
+  isCalibrated: Boolean @default(value: false)
+  "硬件COM口:范围1~99,最大长度:(2,0)"
+  port: Int @default(value: 1)
+  "波特率,最大长度:30"
+  bps: String @dictionary(type: BPS) @default(value: "9600")
+  "校验位,最大长度:1"
+  check: CheckType @default(value: N)
+  "数据位,最大长度:30"
+  dataBit: String @dictionary(type: DATA_BIT) @default(value: "8")
+  "结束位,值1/2,维护到数据字典,最大长度:30"
+  bitStop: String @dictionary(type: END_BIT) @default(value: "1")
+  "控制,最大长度:1"
+  control: FlowControlType @default(value: N)
+  "接口连接类型,最大长度:30"
+  connectionType: ConnectionType
+  "IP地址,最大长度:30"
+  ip: String
+  "以太网端口,最大长度:(10,0)"
+  ethernetPort: Int
+  "协议类型,最大长度:30"
+  protocol: ProtocolType
+  "通信频率,最大长度:(10,0)"
+  communicationDelay: Int @default(value: 500)
+  "通信重新连接最大尝试次数,最大长度:(10,0)"
+  communicationRetryNumber: Int @default(value: 3)
+  "通信重新连接间隔时间,最大长度:(10,0)"
+  communicationRetryDelay: Int @default(value: 500)
+  "稳定称量值最大尝试次数,最大长度:(10,0)"
+  stabilityRetryNumber: Int @default(value: 30)
+  "稳定称量值尝试间隔时间,最大长度:(10,0)"
+  stabilityRetryDelay: Int @default(value: 500)
+  "条状图频率,最大长度:(10,0)"
+  bargraphDelay: Int @default(value: 50)
+  "称量重置天平皮重:称量之前的校验"
+  isResetBalanceTare: Boolean @default(value: false)
+  # "衡器版本,值1/2,维护到数据字典"
+  # version: Int! @default(value: "1")
+  "是否重置皮重:称量中重置"
+  isResetTare: Boolean @default(value: false)
+  "衡器类型,最大长度:1"
+  balanceType: BalanceType!
+
+  "衡器精度"
+  balancePrecisions: [BalancePrecision!]!
+  "衡器砝码"
+  balancePoises: [BalancePoise!]
+  "校准历史"
+  calibrationHistories: [CalibrationHistory!]
+  "称量信息"
+  weighHistories: [WeighHistory!]
+  "外设设备"
+  device: Device
+  "校准计划"
+  validityPlans: [ValidityPlan!]
+}
+
+"""
+校准设置
+"""
+type CalibrationSetting {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "衡器类型,最大长度:1"
+  balanceCategory: BalanceCategory! @default(value: B)
+  "校准级别,1/2/3,最大长度:(2,0)"
+  calibrationLevel: Int
+  "校准类型,最大长度:1"
+  calibrationType: CalibrationType
+  "两次校准之间的时间值,最大长度:(10,0)"
+  calibrationDuration: Int
+  "两次校准之间的时间值的单位,最大长度:1"
+  calibrationDurationUnit: CalibrationTimeUnit
+  "校准设置里的步骤,最大长度:2000"
+  step: String
+  "校准称重的次数,最大长度:(2,0)"
+  calibrationNumber: Int
+  "是否为多范围校准"
+  isMultiCalibration: Boolean
+  "过期后有效时间,最大长度:(4,0)"
+  tolerance: Int
+  "不同称量"
+  isDifferentWeigh: Boolean
+}
+
+"""
+衡器精度
+"""
+type BalancePrecision {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "衡器编码,最大长度:30"
+  code: String!
+  # "称量工作站"
+  # weighWorkstation: String!
+  # "衡器编号"
+  # balanceCode:  String!
+  "衡器范围号,最少一个,且最多只能有三个范围,最大长度:(2,0)"
+  rangeNumber: Int
+  "最小范围,最大长度:(10,3)"
+  minRange: Float
+  "最大范围,最大长度:(10,3)"
+  maxRange: Float
+  "衡器精度,最大长度:(10,6)"
+  balanceAccuracy: Float
+  "校准公差,最大长度:(10,6)"
+  tolerance: Float
+  "衡器信息"
+  balance: Balance!
+}
+
+"""
+衡器链接砝码
+考虑移除
+"""
+type BalanceLinksPoise {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "衡器编码,最大长度:30"
+  code: String!
+  # "衡器编号"
+  # balanceCode: String!
+  "砝码,最大长度:30"
+  poise: String
+}
+
+"""
+衡器砝码
+"""
+type BalancePoise {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "砝码,最大长度:30"
+  poise: String @unique
+  "重量,最大长度:(10,3)"
+  weight: Float
+  "单位,最大长度:4"
+  unit: String
+  "衡器信息"
+  balances: [Balance!]
+}
+
+"""
+校准历史
+"""
+type CalibrationHistory {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "操作类型,最大长度:30"
+  action: String
+  "操作注释,描述操作类型,由action决定,最大长度:200"
+  comment: String
+
+  "校准时间,默认显示格式与精度要求:YYYY-MM-DD"
+  calibrationDate: DateTime! @systemDate
+  "工作中心,最大长度:30"
+  workCenter: String
+  "工站,最大长度:30"
+  workstation: String!
+  "校准操作人,最大长度:30"
+  operator: String
+
+  "台数:目前不用处理,最大长度:(2,0)"
+  platform: Int @default(value: 1)
+  "校准类型,最大长度:1"
+  calibrationType: CalibrationType
+  "称重数:称量的次数,第几次称量,最大长度:(4,0)"
+  weighSeq: Int
+  "衡器编码,最大长度:30"
+  code: String!
+  # "衡器编号"
+  # balanceCode: String
+  "衡器名称,最大长度:100"
+  balanceName: String
+  #衡器定义的精度范围,复制于衡器精度表.
+  #当校准设置里“多范围校准”选项为“Y”时,范围选项才可以选择,即可以对衡器的不同范围进行不同的称量校准.
+  "衡器精度范围编号,最大长度:(2,0)"
+  rangeNumber: Int
+  "公差,最大长度:(10,6)"
+  tolerance: Float
+  "公差单位,最大长度:4"
+  toleranceUnit: String
+  "砝码,最大长度:30"
+  poise: String
+  "砝码重量,最大长度:(10,3)"
+  poiseWeight: Float
+  "校准称量的重量,最大长度:(10,3)"
+  caliberationWeight: Float
+  "校准称量的重量的单位,最大长度:4"
+  caliberationWeightUnit: String
+
+  #结束日期=校准日期+校准周期;默认为上一次校准后的结束日期.
+  "校准有效期的结束日期,默认显示格式与精度要求:YYYY-MM-DD"
+  calibrationFinDate: DateTime
+  "归档时间,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  archiveDate: DateTime @systemDate
+  # "衡器信息"
+  # balance: Balance!
+  "存储校准操作所对应的校准计划的级别ID,来自校验计划,最大长度:60"
+  levelId: String! 
+}
+
+"""
+称量工站清洁规则
+"""
+type BalanceCleanSetting {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "厂区:规则应用的范围,最大长度:10"
+  site: String!
+  "规则类型:最大长度:1"
+  ruleType: CleanType!
+  "规则编码:最大长度:30"
+  code: String! @unique
+  "规则名称:最大长度:100"
+  name: String!
+}
+
+"""
+称量工站清洁历史记录
+"""
+type BalanceCleanHistory {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "称量工单号,最大长度:30"
+  workOrder: String!
+  "工单版本,最大长度:(2,0)"
+  version: Int!
+  "批次号,最大长度:30"
+  lot: String!
+  "物料编码,最大长度:30"
+  materialCode: String
+  "上一个物料编码,最大长度:30"
+  preMaterialCode: String
+  "上一个工单号,最大长度:30"
+  preWONumber: String
+  "上一个工单版本,最大长度:(2,0)"
+  preWOVersion: Int
+
+  "称量单元清洁日期,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  cleanDate: DateTime @systemDate
+  "执行清洁的工作中心,最大长度:30"
+  workCenter: String
+  "执行清洁的工作站,最大长度:30"
+  workstation: String
+  "操作员,最大长度:30"
+  operator: String
+
+  "清洁的衡器编码,最大长度:30"
+  balanceCode: String!
+
+  "WDU清洁类型,最大长度:1"
+  cleanType: String
+}
+
+"""
+校准计划
+唯一索引:code + calibrationLevel
+"""
+type ValidityPlan {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "衡器编码,最大长度:30"
+  code: String!
+  "校准级别:由校准设置里定义,最大长度:(2,0),最大长度:(2,0)"
+  calibrationLevel: Int!
+  "衡器种类:复制于衡器信息表,最大长度:1"
+  category: BalanceCategory!
+  "计划校准次数:根据校准标准和衡器范围计算得出,最大长度:(2,0)"
+  planNumber: Int
+  "实际有效校准次数:实际有效的校准次数,即校准成功的次数,最大长度:(2,0)"
+  actualNumber: Int @default(value: 0)
+  "校准完成状态:用于判定该级别是否完成校准"
+  isCalibrated: Boolean @default(value: false)
+  "校准有效期的结束日期,默认显示格式与精度要求:YYYY-MM-DD"
+  calibrationFinDate: DateTime
+
+  "校准计划的级别ID,用于查询历史表数据,区分单级别校验结果,最大长度:60"
+  levelId: String! 
+
+  "校准历史"
+  calibrationHistories: [CalibrationHistory]
+}

@@ -1,0 +1,270 @@
+"""
+称量过程历史
+"""
+type WeighHistory {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "工单号,最大长度:30"
+  workOrder: String!
+  "工单版本,最大长度:(2,0)"
+  version: Int!
+  "工单状态,最大长度:1"
+  orderStatus: OrderStatus
+  "批次号,最大长度:30"
+  lot: String
+  "阶段:来自工单物料,不可编辑,最大长度:4"
+  phase: String!
+  "次序:来自工单物料,不可编辑,最大长度:4"
+  step: String!
+  "剂量:来自工单物料,不可编辑,最大长度:(2,0)"
+  dosage: Int
+
+  # "行动"
+  # action: WeighHisActionType!
+  "同一工单的第几次称量,最大长度:(4,0)"
+  weighSeq: Int!
+  "同一物料的第几次称量,最大长度:(4,0)"
+  materialWeighSeq: Int!
+  "操作员,最大长度:30"
+  operator: String!
+  "工作站,最大长度:30"
+  workStation: String!
+  "工作中心,最大长度:30"
+  workCenter: String!
+  "清洁时间:称量开始时,用户确认称量工站清洁时所记录的时间,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  cleanDate: DateTime @systemDate
+  "清洁类型,最大长度:1"
+  cleanType: CleanType
+
+  "物料编码,最大长度:30"
+  materialCode: String!
+  "物料单位,最大长度:4"
+  materialUnit: String @dictionary(type: EBR_UNIT)
+  "物料理论效价,最大长度:(10,3)"
+  materialPotency: Float
+  "物料理论效价2,最大长度:(10,3)"
+  materialPotency2: Float
+  "物料密度,最大长度:(10,3)"
+  materialDensity: Float
+  "库存单位,最大长度:4"
+  stockUnit: String
+
+  "物料批次号,最大长度:30"
+  materialLot: String
+  "物料库位,最大长度:10"
+  emplacement: String
+  # "容器号"
+  # container: String
+  "容器识别号,最大长度:60"
+  containerID: String
+  "批次效价,最大长度:(10,3)"
+  lotPotency: Float
+  "批次效价2,最大长度:(10,3)"
+  lotPotency2: Float
+  "批次密度,最大长度:(10,3)"
+  lotDensity: Float
+  "批次状态,最大长度:30"
+  lotStatus: LotStatus
+  "是否使用批次效价1"
+  isUseLotPotency: Boolean! @default(value: false)
+  "是否使用批次效价2"
+  isUseLotPotency2: Boolean! @default(value: false)
+
+  "称量模式,最大长度:30"
+  weighMode: WeightMode
+  "公差,最大长度:(10,3)"
+  tolerance: Float
+  # "密度标签标记"
+  # isDensityTagIndex: Boolean! @default(value: false)
+  "一致性数,物料平衡数,最大长度:(10,0)"
+  concordanceNumber: Int
+  "开始毛重,最大长度:(10,3)"
+  startGross: Float
+  "结束毛重,最大长度:(10,3)"
+  finishGross: Float
+  "计算出的净重,最大长度:(10,3)"
+  calculateNet: Float
+  "容器皮重,最大长度:(10,3)"
+  containerTare: Float
+  "皮重,最大长度:(10,3)"
+  tare: Float
+  "净重,最大长度:(10,3)"
+  net: Float
+  "毛重,最大长度:(10,3)"
+  gross: Float
+  "称量单位,最大长度:4"
+  weighUnit: String @dictionary(type: MASS_UNIT)
+  "称量偏差:称量的实际偏差,最大长度:(10,6)"
+  weighGap: Float
+  "同一容器指示器"
+  isSameContainer: Boolean! @default(value: false)
+  "托盘数,最大长度:(10,0)"
+  palletQty: Int
+  "容器数,最大长度:(10,0)"
+  containerQty: Int
+  "开始称量时间,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  weighStartDate: DateTime @systemDate
+  "结束称量时间,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  weighFinDate: DateTime @systemDate
+
+  # "强制精密指示器"
+  # isForcePrecision: Boolean! @default(value: false)
+  # "无强制指标"
+  # liberationForceIndex: Int
+  "是否最终容器"
+  isFinContainer: Boolean @default(value: false)
+  # "标记信息"
+  # isDesc: Boolean @default(value: false)
+  "是否强制称量"
+  isForceWeigh: Boolean @default(value: false)
+  "是否强制批"
+  isLotForce: Boolean @default(value: false)
+  "是否正确的批次"
+  isRespectLot: Boolean @default(value: false)
+
+  "是否已打印标签"
+  isLabelPrinted: Boolean @default(value: false)
+  "标签数,最大长度:(10,0)"
+  labelQty: Int
+  "标签编码,最大长度:60"
+  labelCode: String
+  "计数单位,最大长度:4"
+  countingUnit: String
+  "出标时间,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  labelPrintDate: DateTime @systemDate
+
+  "衡器使用精度,最大长度:(10,6)"
+  balancePrecision: Float
+  "集中混料的任务id,最大长度:30"
+  taskID: String
+  "集中操作,最大长度:1"
+  reconciliation: ActionState
+  "集中检查工作站,最大长度:30"
+  reconciliationWS: String
+  "集中检查操作员,最大长度:30"
+  reconciliationOperator: String
+  "集中检查的时间,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  reconciliationDate: DateTime @systemDate
+  "集中操作2:投料前集中"
+  reconciliation2: ActionState
+  "用于集中检查的工作站2:投料前集中"
+  reconciliationWS2: String
+  "集中检查操作员2"
+  reconciliationOperator2: String
+  "集中检查时间2:投料前集中"
+  reconciliationTime2: DateTime @systemDate
+  "混合（配料）,最大长度:1"
+  combination: ActionState
+  "混合（配料）操作人,最大长度:30"
+  combinationOperator: String
+  "混合（配料）时间,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  combinationTime: DateTime @systemDate
+  "混合（配料）工作站,最大长度:30"
+  combinationWS: String
+  "源设备编码,最大长度:30"
+  srcEquipmentCode: String
+  "目标设备编码,最大长度:30"
+  dstEquipmentCode: String
+  "称量后集中检查的日期,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  weighReconciliationDate: DateTime @systemDate
+  # "称量后RF集中检查的日期"
+  # weighReconciliationRFDate: DateTime@systemDate
+  "称量后混合（配料）的日期,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  weighCombinationDate: DateTime @systemDate
+
+  "衡器信息:强制称量不是必须有衡器的"
+  balance: Balance
+  "称量物料"
+  weighLine: OrderMaterial!
+}
+
+"""
+称量数据汇总
+"""
+type WeighSummary {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "工单号:来自工单物料,不可编辑,最大长度:30"
+  workOrder: String!
+  "工单版本:来自工单物料,不可编辑,最大长度:(2,0)"
+  version: Int!
+  "阶段:来自工单物料,不可编辑,最大长度:4"
+  phase: String!
+  "次序:来自工单物料,不可编辑,最大长度:4"
+  step: String!
+  "剂量:来自工单物料,不可编辑,最大长度:(2,0)"
+  dosage: Int
+  "物料编码:来自工单物料,不可编辑,最大长度:30"
+  materialCode: String!
+  "物料批次号,最大长度:30"
+  lot: String!
+  "条码,最大长度:60"
+  barcode: String!
+  "数量:当称重模式为计数称量时,得到的最终结果为数量,最大长度:(10,3)"
+  quantity: Float
+  "皮重:为同工单同阶段同次序同批次的物料的皮重总和,最大长度:(10,3)"
+  tare: Float
+  "净重:为同工单同阶段同次序同批次的物料的净重总和,最大长度:(10,3)"
+  net: Float
+  "毛重:为同工单同阶段同次序同批次的物料的毛重总和,最大长度:(10,3)"
+  gross: Float
+  "称量单位,最大长度:4"
+  unit: String
+
+  "称量物料"
+  weighLine: OrderMaterial! @relation(link: TABLE)
+}
+# """
+# 称量追溯
+# """
+# type TraceWeigh {
+#   "ID"
+#   id: ID! @id
+#   "创建时间"
+#   createdAt: DateTime!@createdAt
+#   "修改时间"
+#   updatedAt: DateTime!@updatedAt
+#   "创建人ID"
+#   createUser: String!
+#   "修改人ID"
+#   updateUser: String!
+
+#   "工单号"
+#   workOrder: String!
+#   "版本"
+#   version: Int!
+#   "功能"
+#   function: String!
+#   "物料编码"
+#   materialCode: String!
+#   "物料批次号"
+#   lot: String!
+#   "毛重"
+#   gross: Float
+#   "皮重"
+#   tare: Float
+#   "称量数量"
+#   weigh: Float
+#   "称量单位"
+#   weighUnit: String
+#   "清洗日期"
+#   weighCleanDate: DateTime@systemDate
+#   "称量模式"
+#   weighMode: WeightMode
+#   "操作员"
+#   operator: String!
+#   "衡器描述"
+#   balanceDesc: String!
+#   "工作站"
+#   workStation: String!
+# }
