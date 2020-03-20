@@ -1,0 +1,357 @@
+"""
+基础表:危险防范信息
+"""
+type HazardPrevention {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  # materialCode: String!
+  "危险防范编码,最大长度:30"
+  code: String! @unique
+  "危险防范描述,最大长度:400"
+  desc: String!
+  "危险防范描述-英文,最大长度:400"
+  descEn: String!
+
+  "使用危险防范信息的物料"
+  materials: [Material!]
+}
+
+"""
+基础表:取样规则头表
+"""
+type SampleRule {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  "取样规则编码,最大长度:30"
+  code: String! @unique
+  "取样规则描述,最大长度:400"
+  desc: String!
+  "是否允许编辑"
+  isEditable: Boolean!
+
+  "取样规则明细"
+  sampleRuleDetails: [SampleRuleDetail!]
+  "使用取样规则的物料"
+  materials: [Material!]
+}
+"""
+基础表:取样规则明细表
+"""
+type SampleRuleDetail {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  "数量区间:起始数量,最大长度:(10,0)"
+  fromQty: Int!
+  "数量区间:截止数量,最大长度:(10,0)"
+  toQty: Int!
+  "取样数量,最大长度:(10,0)"
+  sampleQty: Int!
+
+  "明细对应的取样规则头信息"
+  sampleRule: SampleRule!
+}
+
+# """
+# 物料字段管理
+# """
+# type MaterialFieldCfg {
+#   "ID"
+#   id: ID! @id
+#   "创建时间"
+#   createdAt: DateTime!@createdAt
+#   "修改时间"
+#   updatedAt: DateTime!@updatedAt
+#   "创建人ID"
+#   createUser: String!
+#   "修改人ID"
+#   updateUser: String!
+
+#   "字段名称"
+#   columnName: String!
+#   "编辑授权级别"
+#   modificationLevel: String! @default(value: "1")
+#   "是否强制"
+#   isMandatory: Boolean! @default(value: false)
+#   "是否影响验证"
+#   isImpactValidation: Boolean! @default(value: false)
+#   "是否外部导入"
+#   isImport: Boolean! @default(value: false)
+# }
+
+"""
+物料表
+"""
+type Material {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  ########################头信息-Start########################
+  "物料编码,最大长度:30"
+  code: String! @unique
+  "物料名称,最大长度:100"
+  name: String!
+  "物料描述,最大长度:200"
+  materialDesc: String
+  "物料状态:M/V/O,最大长度:1"
+  status: MaterialStatus @default(value: M)
+
+  # "物料主要信息"
+  # mainInfo: MaterialMain!
+  # "物料称量信息"
+  # weighingInfo: MaterialWeighing!
+  # "物料批次库存信息"
+  # lotInfo: MaterialLot!
+  # stockInfo: MaterialStock!
+  # "物料危险防范信息"
+  # hazardPrecautionInfo: MaterialHazardPrecaution!
+  ########################头信息-End########################
+
+  ########################主要信息-Start########################
+  "系列/类型组/族:系统不管控,最大长度:100"
+  family: String
+  "物料类型,最大长度:30"
+  materialType: MaterialType @default(value: RAW)
+  "库存单位,最大长度:4"
+  stockUnit: String @dictionary(type: EBR_UNIT) @default(value: "kg")
+  "包装单位:系统不管控,默认为un,最大长度:4"
+  packUnit: String @default(value: "un")
+  "EC编码,最大长度:30"
+  ecCode: String
+
+  "是否原料药"
+  isDrugSubstance: Boolean @default(value: true)
+  # "双效价限制"
+  # doublePotencyLimit: Int
+  "物料效价1的类型:使用重量/容量单位的物料使用该效价;处方组分中的效价默认值,参照该值,在非N的状态下,处方才可以配置是否使用效价,最大长度:1"
+  potencyType1: PotencyType1 @default(value: N)
+  "物料效价1的理论值,实际值由批次效价设定,最大长度:(10,3)"
+  potencyValue1: Float @default(value: 100.000)
+  "物料效价2的类型:使用非重量/容量单位的物料使用该效价;对应的potencyValue2固定为100,不需要在处方中使用该设定,最大长度:1"
+  potencyType2: PotencyType2 @default(value: N)
+  "物料效价2的值:固定值100.000,,最大长度:(10,3)"
+  potencyValue2: Float @default(value: 100.000)
+
+  "损失1:百分比,物料分配时使用,最大长度:(10,2)"
+  loss1: Float @default(value: 10.00)
+  "损失2:百分比,二次损失,系统不管控,最大长度:(10,2)"
+  loss2: Float @default(value: 10.00)
+
+  "是否使用密度"
+  isDensity: Boolean @default(value: false)
+  "理论密度值,实际值通过批次管理,最大长度:(10,3)"
+  density: Float @default(value: 1.000)
+  ########################主要信息-End########################
+
+  ########################称量信息-Start########################
+  "是否称量间称量:处方组分中的是否称量间称量的默认值,参照该值,在非N的状态下,处方才可以配置是否称量间称量"
+  isWeightingWeight: Boolean @default(value: true)
+  "称量间称量误差,最大长度:(4,0)"
+  weightingWeightTolerance: Int @default(value: 30)
+  "是否开始-结束毛重:indicator that allows knowing whether it is possible to submit an item to start and end gross weights"
+  isStartEndGross: Boolean @default(value: true)
+  "标准工作中心:称量间称量物料的标准工作中心,最大长度:30"
+  workCenter: String
+  "是否车间称量:处方组分中的是否车间称量的默认值,参照该值,在非N的状态下,处方才可以配置是否车间称量"
+  isMfgWeight: Boolean @default(value: true)
+  "车间称量误差,最大长度:(4,0)"
+  mfgWeightTolerance: Int @default(value: 50)
+  "是否包装间称量:处方组分中的是否包装间称量的默认值,参照该值,在非N的状态下,处方才可以配置是否包装间称量"
+  isPackingWeight: Boolean @default(value: true)
+  "平均称量时间:单位为秒,最大长度:(4,0)"
+  avgWeightingTime: Int
+
+  # It is the percentage of difference, in absolute value, between the theoretical quantities and the actual
+  # weighed quantities (type: integer of up to 2 digits and decimal of up to 2 digits).
+  "物料平衡触发:在双重称量时使用,最大长度:(2,2)"
+  concordTrigger: Float @default(value: 1)
+  "是否重复使用:indicator that allows retrieving and reusing an item"
+  isReusable: Boolean @default(value: true)
+  "是否批次管理:标示物料是否通过批次管理,非批次管理的物料,在称量间、车间、包装间都不需要称量,如包材"
+  isLotManaged: Boolean @default(value: true)
+
+  "是否允许批次混合:在一个相同容器中称量时混合相同材料的两种不同批次"
+  isLotMix: Boolean
+  "是否允许供应商批次混合:在一个相同容器中称量时混合相同材料的两种不同供应商批次"
+  isSupplierLotMix: Boolean
+
+  "物料的默认称量模式,最大长度:30"
+  weightDefaultMode: WeightMode
+  "物料允许的称量模式"
+  weightModes: [WeightMode!]! @scalarList(strategy: RELATION)
+  ########################称量信息-End########################
+  ########################库存信息-Start########################
+  "理论皮重,最大长度:(10,3)"
+  theoTare: Float @default(value: 0)
+  "理论净重,最大长度:(10,3)"
+  theoNet: Float @default(value: 0)
+  "物料list类型:来自数据字典,最大长度:4"
+  list: String @dictionary(type: MTL_LIST_TYPE)
+  "ABC代码,物料ABC等级,最大长度:1"
+  abcCode: ABCCode @default(value: A)
+  # "库存数量:该物料的总库存数,统计字段,不可修改,最大长度:(10,3)"
+  # stockQty: Float @default(value: 0)
+  "最小库存量,最大长度:(10,3)"
+  miniStock: Float
+  "流转率,最大长度:(4,0)"
+  turnover: Int @default(value: 0)
+  "供应时间,最大长度:(4,0)"
+  supplyTime: Int @default(value: 0)
+  "高度:所需库位高度,最大长度:(4,0)"
+  height: Int @default(value: 0)
+  # "成本:单位库存的成本"
+  # cost: Float @default(value: 0)
+  # "成本的币种"
+  # currency: String
+  "称量1: 容器标签适用,表示一颗物料的容器的净重,用于净重和毛重称量,最大长度:(10,3)"
+  weight1: Float
+  "称量2:托盘标签适用,表示一颗物料的托盘的净重,用于净重和毛重称量,最大长度:(10,3)"
+  weight2: Float
+  "称量3:系统不管控,最大长度:(10,3)"
+  weight3: Float
+  "称量1的单位:质量单位:kg,g,mk,lb,最大长度:4"
+  weightUnit1: String @dictionary(type: MASS_UNIT)
+  "称量2的单位:质量单位:kg,g,mk,lb,最大长度:4"
+  weightUnit2: String @dictionary(type: MASS_UNIT)
+  "称量3的单位:质量单位:kg,g,mk,lb,最大长度:4"
+  weightUnit3: String @dictionary(type: MASS_UNIT)
+
+  "是否散货存储"
+  isMassStorage: Boolean @default(value: false)
+  "是否冷藏:冷库"
+  isRefrige: Boolean @default(value: false)
+  "是否有安全要求"
+  isSecured: Boolean @default(value: false)
+  "来自库房:如有的物料是直接通过管道系统进入生产"
+  isFromWarehouse: Boolean @default(value: true)
+
+  "默认托盘库区:默认库区,该库区需包含有容量限制且存储类型为托盘的库位,最大长度:10"
+  defaultPalletZone: String
+  "默认容器库区:默认库区,该库区需包含有容量限制且存储类型为容器的库位,最大长度:10"
+  defaultContainerZone: String
+  "备用托盘库区:备用库区,该库区需包含不限容量的库位,最大长度:10"
+  backupPalletZone: String
+  "备用容器库区:备用库区,该库区需包含不限容量的库位,最大长度:10"
+  backupContainerZone: String
+  ########################库存信息-End########################
+
+  ########################批次信息-Start########################
+  "批次状态:物料接收时的批次状态,最大长度:30"
+  lotStatus: LotStatus @default(value: QUARANTINE)
+  "是否允许自动分配:是否可以为工单自动分配物料（自动选择批次）,如果不允许,则必须为物料输入批次号"
+  autoAllcation: Boolean @default(value: true)
+  "物料有效期,最大长度:(5,0)"
+  validity: Int @default(value: 0)
+  "有效期的单位:天或月,最大长度:1"
+  validityUnit: ValidityUnit @default(value: M)
+  "物料使用提前期:有效期前N天使用;物料在有效期内,但是超过提前试用期,物料使用时,系统需要提醒,最大长度:(5,0)"
+  useBefore: Int @default(value: 0)
+  "取样数量:设置物料批次的每个容器将被取样的初始数量,最大长度:(10,3)"
+  sampledQty: Float @default(value: 0)
+  "取样单位:使用该物料的库存单位,最大长度:4"
+  simpledUnit: String @dictionary(type: EBR_UNIT)
+  "分析有效期:如果该料经过取样分析,则在物料接收时该值必须设置,最大长度:(5,0)"
+  analysisValidity: Int @default(value: 0)
+  "LDU警报:Limit Date of Use;即限制使用日期的提前期设定,最大长度:(5,0)"
+  lduAlarm: Int @default(value: 0)
+  "结束批次触发值,百分比表示,最大长度:(3,2)"
+  minPercentForEndLot: Float @default(value: 0)
+
+  "取样初始库位:该库位需是不限容量的库位,最大长度:10"
+  sampleInitEmplacement: String
+  "取样库区:该库区需包含不限容量的库位,最大长度:10"
+  sampleZone: String
+  "取样规则"
+  sampleRule: SampleRule
+  "取样标签数量:此字段表示收到托盘或容器后,打印的取样标签的数量,最大长度:(3,0)"
+  sampleLabelQty: Int @default(value: 0)
+
+  "标签类型,最大长度:1"
+  labelType: LabelType @default(value: C)
+  "批次标签数量:此字段表示收到托盘或容器后,打印的批次文件标签的数量,最大长度:(3,0)"
+  lotLabelQty: Int @default(value: 0)
+
+  "开袋后是否重新计算有效期"
+  isShelfLife: Boolean @default(value: false)
+  "开袋后有效期,最大长度:(3,0)"
+  shelfLifeValue: Int
+  "开袋后有效期的单位,最大长度:30"
+  shelfLifeUnit: ShelfLifeUnit
+  "预标签类型,最大长度:30"
+  preLabelType: String @dictionary(type: PRE_LABEL) @default(value: "C")
+  ########################批次信息-End########################
+
+  ########################危险防范信息-Start########################
+  "危险防范标记词:GHS 标签上的标记词,最大长度:1"
+  mentionWord: GHSWord @default(value: E)
+
+  "危险防范标记1,最大长度:30"
+  typeLogo1: String @dictionary(type: HPP)
+  "危险防范标记2,最大长度:30"
+  typeLogo2: String @dictionary(type: HPP)
+  "危险防范标记3,最大长度:30"
+  typeLogo3: String @dictionary(type: HPP)
+  "危险防范标记4,最大长度:30"
+  typeLogo4: String @dictionary(type: HPP)
+  "危险防范标记5,最大长度:30"
+  typeLogo5: String @dictionary(type: HPP)
+
+  "危险防范处理,最大长度:400"
+  hazardPreventionNote: String
+  "危险防范处理简要描述,最大长度:100"
+  hazardPreventionShortNote: String
+  "库存处理,最大长度:400"
+  stockNote: String
+  "库存处理简要描述,最大长度:100"
+  stockShortNote: String
+
+  "语言:决定物料所用的的危险防范信息的语言,最大长度:30"
+  language: HazardPreventionLanguage! @default(value: ZH_CN)
+  "危险防范信息"
+  hazardPreventions: [HazardPrevention!]
+  ########################危险防范信息-End########################
+
+  # artlocal: String!
+  # datedernierchangeetat: String!
+  # inflag: String!
+  # unitepoidsunitaire: String!
+  # zoneprelevement: String!
+  # dtdatedernieremodif: String!
+  # toleranceexpe: String!
+  # "批次计数器"
+  # lotCompteur: Int
+}
