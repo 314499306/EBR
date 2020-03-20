@@ -1,0 +1,138 @@
+"""
+处方信息
+code+version 为唯一索引
+"""
+type Formula {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  "处方编码,最大长度:30"
+  code: String!
+  "版本号,最大长度:(2,0)"
+  version: Int!
+  "原处方编码,最大长度:30"
+  originalFormulaCode: String
+  "原版本号,最大长度:(2,0)"
+  origineVersion: Int
+  "处方名称,最大长度:100"
+  name: String!
+  "产品编码,最大长度:30"
+  productCode: String!
+  "产品名称,最大长度:100"
+  productName: String!
+  "产品主要描述,最大长度:200"
+  productDesc: String
+  "处方类型（临床T/研发M）,最大长度:1"
+  type: FormulaType!
+  "项目:系统不管控,最大长度:100"
+  project: String
+  "剂型:系统不管控,最大长度:100"
+  dosageType: String
+  "剂量:系统不管控,最大长度:100"
+  dosage: String
+  "表格:系统不管控,最大长度:100"
+  form: String
+  "状态,最大长度:1"
+  status: FormulaStatus!
+  "目录,最大长度:100"
+  folder: String
+  "单位类型（Q/U）,单位类型u级联,最大长度:1"
+  unitType: FormulaUnitType!
+  "单位(U-->un/kn/fl),最大长度:4"
+  unit: String @dictionary(type: UINT_UNIT)
+  "称量当量,最大长度:(10,3)"
+  weightEquivalent: Float!
+  "称量当量单位,最大长度:4"
+  weightEquivalentUnit: String! @dictionary(type: MASS_UNIT)
+  "参考数量,最大长度:(10,3)"
+  refQuantity: Float!
+  "参考数量单位,最大长度:4"
+  refQuantityUnit: String! @dictionary(type: EBR_UNIT)
+  "附注,最大长度:200"
+  message: String
+  "批准人ID,最大长度:30"
+  approveUser: String
+  "批准时间,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  approveDate: DateTime @systemDate
+  "验证人ID,最大长度:30"
+  verifyUser: String
+  "验证时间,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  verifyDate: DateTime @systemDate
+  "取消时间,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  cancelAt: DateTime @systemDate
+  "取消人ID,最大长度:30"
+  cancelUser: String
+  "有效开始时间,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  beginValidDate: DateTime
+  "有效结束时间,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  endValidDate: DateTime
+
+  "处方物料"
+  formulaMaterials: [FormulaMaterial!]
+}
+
+"""
+处方物料
+"""
+type FormulaMaterial {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  "阶段,最大长度:4,同一种物料可以有多个阶段,不同阶段可以有同一种次序,具体见图:"
+  phase: String!
+  "阶段描述,最大长度:100"
+  phaseDes: String
+  "次序,最大长度:4"
+  step: String!
+  "是否单一批次"
+  isUniqueLot: Boolean! @default(value: false)
+  "公差,最大长度:(10,3)"
+  tolerance: Float
+  "物料编码,最大长度:30"
+  materialCode: String!
+  "物料名称,最大长度:100"
+  materialName: String!
+  "补偿器(N/Y/X),最大长度:1"
+  isCompensateur: CompensateurType!
+  "数量,最大长度:(10,3)"
+  qty: Float!
+  "单位,最大长度:4"
+  unit: String! @dictionary(type: EBR_UNIT)
+  "是否称量间称量"
+  isWeightingWeight: Boolean! @default(value: false)
+  "是否车间称量"
+  isMfgWeight: Boolean! @default(value: false)
+  "是否包装间称量"
+  isPackWeight: Boolean! @default(value: false)
+  "剂量,最大长度:(2,0)"
+  dosage: Int
+  "使用效价"
+  IsPotency: Boolean! @default(value: false)
+  "效价,最大长度:(10,3)"
+  potency: Float
+  "是否固定数量"
+  isFixedQty: Boolean! @default(value: false)
+
+  "是否主料"
+  isMasterMaterial: Boolean! @default(value: false)
+  "备用字段:目前X海项目使用,用作可浮动比例"
+  attribute1: String
+
+  formula: Formula!
+}
