@@ -1,0 +1,48 @@
+"""
+族谱有效起始时间:族谱查询的起始时间,系统设定值
+"""
+type GenealogyActivation {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "起始时间,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  activationDate: DateTime!
+}
+
+"""
+族谱信息:消耗与产出的批次和工单链接信息
+"""
+type Genealogy {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  # "批次ID,最大长度:30"
+  # lotID: ID
+  "消耗批次号,最大长度:30"
+  usedLot: String
+  "耗料编码,最大长度:30"
+  usedMaterial: String
+  # "工单ID,最大长度:30"
+  # woID: ID
+  "工单号,最大长度:30"
+  workOrder: String
+  "工单版本,最大长度:(2,0)"
+  workOrderVersion: Int
+  "产出批次号,最大长度:30"
+  producedLot: String
+  "产出产品,物料编码,最大长度:30"
+  producedMaterial: String
+  "链接类型,最大长度:1"
+  link: GenealogyLinkType!
+  # "开始时间"
+  # dataStartDate: DateTime
+  # "结束时间"
+  # dataEndDate: DateTime
+}
