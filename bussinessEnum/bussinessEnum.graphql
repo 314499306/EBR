@@ -1,0 +1,723 @@
+"""
+字典类型:最大长度:30
+"""
+enum DictionaryType {
+  "危险防范标记:Hazard Prevention Pictogram"
+  HPP
+  "EBR单位:EBR系统中可用单位"
+  EBR_UNIT
+  "质量单位:"
+  MASS_UNIT
+  "质量单位2:仅包含kg和g"
+  MASS_UNIT2
+  # "容量单位:"
+  # CAPACITY_UNIT
+  "计数单位:"
+  UINT_UNIT
+
+  "波特率:"
+  BPS
+  "数据位:"
+  DATA_BIT
+  "结束位:"
+  END_BIT
+
+  "接收类型:"
+  RECEIPT_TYPE
+  "区段类型:"
+  SECTOR_TYPE
+  "物料特性列表"
+  MTL_LIST_TYPE
+  "预标签类型"
+  PRE_LABEL
+}
+
+"""
+有效期单位:最大长度:1
+"""
+enum ValidityUnit {
+  "月:Month"
+  M
+  "日:Day"
+  D
+}
+
+"""
+开袋有效期单位:最大长度:30
+"""
+enum ShelfLifeUnit {
+  "月:"
+  MONTH
+  "天:"
+  DAY
+  "小时:"
+  HOUR
+  "分钟:"
+  MIN
+}
+
+"""
+处方类型:最大长度:1
+"""
+enum FormulaType {
+  "测试/研发:Test/Development"
+  T
+  "生产/临床:Manufacturing/Clinical"
+  M
+}
+
+"""
+处方状态:最大长度:1
+"""
+enum FormulaStatus {
+  "可编辑的:"
+  M
+  "结束输入:"
+  T
+  "已批准:"
+  A
+  "已验证:"
+  V
+  "失效的:"
+  O
+}
+
+"""
+处方单位类型:最大长度:1
+"""
+enum FormulaUnitType {
+  "定量:Quantitative"
+  Q
+  "单一:Unit"
+  U
+}
+
+"""
+补偿器类型:最大长度:1
+"""
+enum CompensateurType {
+  "非补偿物料:该物料不是补偿物料"
+  N
+  "效价补偿:QS,针对物料由于效价变化的补偿(如:本来是4gk,效价75%的人参,现在是3kg,效价100%的人参,药效一样但是对物料本身要求是4kg,于是加1kg其他无药效的辅料或者其他,达到该物料预期重量)"
+  Y
+  "工单补偿:该物料为补偿物料(针对工单重量补偿)"
+  X
+}
+
+# """
+# 物料分类列表类型:最大长度:4
+# """
+# enum MaterialListType {
+#   "无分类:Unlisted "
+#   U
+#   "分类1:List I "
+#   I
+#   "分类2:List II "
+#   II
+#   "麻醉剂:Stupefacient"
+#   S
+#   "精神治疗药物:Psychotropic drug"
+#   P
+#   "麻醉和精神治疗药物:Stupefacient & Psychotropic drug "
+#   X
+# }
+
+"""
+物料类型:最大长度:30
+"""
+enum MaterialType {
+  "原材料:Raw Material"
+  RAW
+  "半成品:Half-Finished Product"
+  HALF
+  "包材:Packing Item"
+  PACK
+  "成品:Finished Product"
+  FINISHED
+}
+
+"""
+物料状态:最大长度:1
+"""
+enum MaterialStatus {
+  "可编辑:Modifiable"
+  M
+  "已验证:Validated"
+  V
+  "失效的:Obsolete"
+  O
+}
+
+"""
+物料效价类型1:主要用于物料折算,通常将物料按照效价折算成需要称量的质量单位,最大长度:1
+"""
+enum PotencyType1 {
+  "无效价:Not potent"
+  N
+  "%: Potency expressed in percentage:有效价. 效价以百分比表示"
+  P
+  "μg/mg:Potency expressed in micrograms per milligram:有效价. 效价以微克每毫克表示"
+  L
+  "iu/mg:Potency expressed in international units per milligram:有效价. 效价以国际单位每毫克表示"
+  U
+  "mu/g:Potency expressed in millions of international units per gram:有效价. 效价以百万国际单位每克表示"
+  M
+  "μg/ml:Potency expressed in micrograms per millilitre:有效价. 效价以微克每毫升表示"
+  R
+  "mg/ml:Potency expressed in milligram per millilitre:有效价. 效价以毫克每毫升表示."
+  S
+  "iu/ml:Potency expressed in international unit per millilitre:有效价. 效价以国际单位每毫升表示"
+  T
+  "iu/g:Potency expressed in international unit per gram:有效价. 效价以国际单位每克表示."
+  V
+}
+
+"""
+物料效价类型2:最大长度:1
+"""
+enum PotencyType2 {
+  "无称量单位:"
+  N
+  "称量单位以公斤表示:"
+  K
+  "称量单位以克表示:"
+  G
+  "称量单位以毫克表示:"
+  M
+}
+
+"""
+批次状态:物料的批次状态,最大长度:30
+"""
+enum LotStatus {
+  "检验:"
+  QUARANTINE
+  "批准:"
+  APPROVED
+  "带条件批准:Conditionally Approved"
+  CONDITIONALLY_APPROVED
+  "测试:一个固定的状态,由实验室或质量部门决定,类似与检验,但是只用于研发性质的产品"
+  TEST
+  "锁定:"
+  HOLD
+  "驳回:"
+  REJECTED
+  "失效的"
+  OBSOLETE
+}
+
+"""
+批次取样状态:最大长度:30
+"""
+enum LotSampleStatus {
+  "待取样:"
+  TO_BE_SAMPLED
+  "取样中"
+  SAMPLING
+  "已取样"
+  SAMPLED
+  "待重取样"
+  TO_BE_RESAMPLED
+}
+
+"""
+物料ABC等级:最大长度:1
+"""
+enum ABCCode {
+  A
+  B
+  C
+}
+
+"""
+标签类型:最大长度:1
+用于物料接收(批次接收,生产声明等业务)时,如何出标.
+"""
+enum LabelType {
+  "托盘标签:只出托盘标,一个托盘只有一个容器;Pallet labelling: each pallet is considered as a support for a single container"
+  P
+  "容器标签:按容器接收/声明时,为所有的容器出标;按托盘接收/声明时,为所有的容器和托盘出标.Container labelling: all containers in a container receipt are labelled;all containers and all pallets in a pallet receipt are labelled"
+  C
+}
+
+"""
+GHS标签标记词:最大长度:1
+"""
+enum GHSWord {
+  " :Empty String"
+  E
+  "警告:WARNING"
+  W
+  "危险:DANGER"
+  D
+}
+
+"""
+16种称量模式:最大长度:30
+"""
+enum WeightMode {
+  "净重:Net"
+  NET
+  "毛重:Gross"
+  GROSS
+  "仿毛:Lure gross"
+  LURE_GROSS
+  "拆包:Unpacking"
+  UNPACKING
+  "人工输入:Manual input"
+  MANUAL_INPUT
+  "强制输入:Forced input"
+  FORCED_INPUT
+  "RM混合:RM mix"
+  RM_MIX
+  "记录皮重:Recorded tare"
+  RECORDED_TARE
+  "减法:Subtract"
+  SUBTRACT
+  "双重:Double"
+  DOUBLE
+  "自动:Automatic"
+  AUTOMATIC
+  "激光:Laser"
+  LASER
+  "量筒:Cylinder"
+  CYLINDER
+  "托盘:Pallet"
+  PALLET
+  "计数:Counting"
+  COUNTING
+  "开始毛重-结束毛重:SG-FG;Start_Gross_Final_Gross"
+  SG_FG
+}
+
+"""
+衡器类型:最大长度:1
+"""
+enum BalanceType {
+  "METTLER ID30:"
+  A
+  "BIZERBA:"
+  B
+  "METTLER SICS:"
+  C
+  "SARTORIUS:"
+  I
+  "METTLER:"
+  M
+  "METTLER SICS:"
+  S
+  "SARTORIUS_MULTI:"
+  Y
+  "PRECIA SLAVE:"
+  R
+  "TOLEDO:"
+  T
+  "PRECIA RUBIS:"
+  P
+  "METTLER_MULTI:"
+  X
+  "METTLER_MULTI SICS:"
+  D
+  "METTLER_MULTI SICS 2:"
+  E
+  "METTLER IND780:"
+  N
+  "METTLER IND780 SICS 2:"
+  O
+}
+
+"""
+工单来源的种类:最大长度:1
+"""
+enum OrderCategory {
+  "直接工单:"
+  D
+  "处方工单:"
+  F
+  "ERP工单:"
+  X
+  "指定输出:"
+  S
+}
+
+# """
+# 工单类型:决定工单的生命周期(工单将会经历的状态);创建工单时,可为工单指定一个或多个工单类型
+# """
+# enum OrderType {
+#   "称量阶段:Weighing Phase"
+#   W
+#   "生产阶段:Manufacturing Phase"
+#   M
+#   "包装阶段:Packing Phase"
+#   P
+#   "其他阶段:Other Phase"
+#   O
+# }
+
+"""
+工单状态:最大长度:1
+"""
+enum OrderStatus {
+  "可编辑的:Modifiable/Created;新建工单的初始状态;"
+  M
+  "已发布:Launched"
+  L
+  "生产中:WIP"
+  I
+  "生产终止:Terminated"
+  T
+  "已关闭:Closed"
+  C
+  "已归档:Archived/Served"
+  A
+  "已删除:Deleted/Cancelled"
+  D
+}
+
+"""
+集中/混料状态:最大长度:1
+"""
+enum ActionState {
+  "待集中/待混料:To reconcile"
+  A
+  "锁定:Locked by the WorkFlow"
+  B
+  "不能集中/不能混料:Not reconcilable"
+  N
+  "已集中/已混料:Reconciled"
+  R
+  "取消称量:已退料"
+  X
+}
+
+"""
+危险防范语言:最大长度:30
+"""
+enum HazardPreventionLanguage {
+  "简体中文:"
+  ZH_CN
+  "英文(美国):"
+  EN_US
+}
+
+# """
+# 模块:
+# """
+# enum ModuleName {
+#   "访问控制:"
+#   ACCESS_MGT
+#   "系统管理:"
+#   SYS_MGT
+#   "数据管理:"
+#   DATA_MGT
+#   "物料管理:"
+#   MATERIAL
+#   "处方管理:"
+#   FORMULA
+#   "工单管理:"
+#   WO
+#   "批次管理:"
+#   LOT
+#   "称量管理:"
+#   WEIGHINT
+#   "工艺管理:"
+#   MI
+#   "库存管理:"
+#   INV
+#   "设备管理:"
+#   EQUIPMENT
+#   "条码标签:"
+#   BARCODE
+#   "质量管理:"
+#   QC
+#   "接口管理:"
+#   INTERFACE_MGT
+#   "审计追溯:"
+#   AUDIT
+#   "报表:"
+#   REPORT
+#   "看板:"
+#   MONITOR
+#   "移动终端:"
+#   MOBILE_CLIENT
+# }
+
+"""
+衡器种类:最大长度:1
+"""
+enum BalanceCategory {
+  "天平:"
+  B
+  "地磅:"
+  S
+}
+
+"""
+设备接口类型:最大长度:30
+"""
+enum ConnectionType {
+  "以太网:"
+  ETH
+  "串口:"
+  COM
+}
+
+"""
+协议类型:最大长度:30
+"""
+enum ProtocolType {
+  TCP
+  UDP
+}
+
+"""
+衡器校准频率:最大长度:1
+"""
+enum CalibrationType {
+  "每天:Daily"
+  A
+  "每周:Weekly"
+  E
+  "每两周:Bimonthly"
+  I
+  "每月:Monthly"
+  M
+  "每三个月:Quarterly"
+  T
+  "每半年:Biannually"
+  X
+  "每年:Yearly"
+  L
+}
+
+"""
+衡器清洁方式:最大长度:1
+"""
+enum CleanType {
+  "按工单清洁:By WO"
+  W
+  "按物料清洁:By material"
+  M
+}
+
+"""
+衡器控制类型:最大长度:1
+"""
+enum FlowControlType {
+  "无:None"
+  N
+  "XON/XOFF:"
+  X
+  "RTS/CTS:"
+  C
+}
+
+"""
+校验位:最大长度:1
+"""
+enum CheckType {
+  "无:None"
+  N
+  "偶数:Even"
+  E
+  "奇数:Odd"
+  O
+}
+
+"""
+衡器校准时间单位:最大长度:1
+"""
+enum CalibrationTimeUnit {
+  "分钟:"
+  M
+  "天:"
+  D
+}
+
+# """
+# 称量操作类型:
+# """
+# enum WeighActionType {
+#   "校准取消:"
+#   A
+#   "衡器修改:"
+#   B
+#   "校准关闭:"
+#   C
+#   "称量过程修改:"
+#   E
+#   "强制校准:"
+#   F
+#   "强制校准:"
+#   V
+#   "称量失败:"
+#   N
+#   "称量成功:"
+#   O
+#   "称量归档:"
+#   R
+#   "衡器删除:"
+#   U
+# }
+
+"""
+物料称量状态:最大长度:1
+"""
+enum WeighStatus {
+  "不可称量:Non weighable"
+  N
+  "待称量:Weighable"
+  W
+  "称量中:Weighing in progress"
+  P
+  "称量完成:Weighing terminated"
+  T
+}
+
+"""
+批次物料接收状态:最大长度:30
+"""
+enum ReceiptStatus {
+  "未处理:批次接收单创建后的初始状态"
+  UNTREATED
+  "已接收:批次接收核准后"
+  RECEIVED
+  "已出标:对批次物料接收的容器/托盘打标后"
+  LABELLED
+  "已取样:对(需要取样的)批次的容器/托盘取样后,不需取样在出标之后即到该状态"
+  SAMPLED
+  "待入库:Storage in progress 储存中"
+  SIP
+  "已入库:该批次所有容器/托盘储存完成"
+  STORED
+  "取消:取消该批次接收"
+  CANCEL
+}
+
+"""
+族谱链接类型:最大长度:1
+"""
+enum GenealogyLinkType {
+  "消耗:Consumption"
+  C
+  "产出:Production"
+  P
+}
+
+# """
+# 器具类型: 容纳物料的器具类型
+# """
+# enum ApplianceType {
+#   "容器:Container"
+#   C
+#   "托盘:Pallet"
+#   P
+# }
+
+"""
+存储类型: 存储物料的实体类型,最大长度:1
+"""
+enum StockType {
+  "容器存储:Container"
+  C
+  "托盘存储:Pallet"
+  P
+}
+
+"""
+专论:Pharmacopoeia,医药领域的药典,最大长度:30
+"""
+enum Monograph {
+  "中国药典: ChP"
+  CHP
+  "欧洲药典:"
+  EP
+  "美国药典:"
+  USP
+  "英国药典:"
+  BP
+  "日本药典:"
+  JP
+  "国际药典:"
+  PH_INT
+}
+
+"""
+库位类型:最大长度:1
+"""
+enum EmplacementType {
+  "正常:Normal"
+  N
+  "配送:Dispensary"
+  D
+  "配置缓冲:Preparation Buffer"
+  T
+  "外部仓库:External warehouse"
+  X
+  "发货平台:Dispatching platform"
+  Q
+  "发货准备:Dispatching preparation"
+  P
+}
+
+"""
+托盘状态:最大长度:1
+"""
+enum PalletStatus {
+  "待取样:To sample"
+  P
+  "待入库:To stock"
+  T
+  "已入库:Stocked"
+  S
+  "丢弃:Destroy"
+  X
+}
+
+"""
+设备类型:最大长度:30
+"""
+enum DeviceType {
+  "打印机:"
+  PRINTER
+
+  "电子秤:"
+  WEIGH
+
+  "手环:"
+  BAND
+}
+
+"""
+设备状态:最大长度:30
+"""
+enum DeviceStatus {
+  "注册:"
+  REGISTER
+
+  "注销:"
+  UNREGISTER
+
+  "在线:"
+  ONLINE
+
+  "离线:"
+  OFFLINE
+}
+
+"""
+属性类型:最大长度:30
+"""
+enum DeviceStatus {
+  "文本:"
+  TEXT
+
+  "数字:"
+  NUMERIC
+
+  "列表:"
+  LIST
+
+  "状态:"
+  STATUS
+}
