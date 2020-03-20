@@ -1,0 +1,302 @@
+"""
+产品包装方式:
+"""
+type ProductPackingWay {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  "名称,包装方式名称:100"
+  name: String!
+  "物料编码,最大长度:30"
+  materialCode: String!
+  "物料名称,最大长度:100"
+  materialName: String!
+  "工作中心编码:来自工作中心基础数据,最大长度:30"
+  workCenterCode: String!
+  "是否默认"
+  isDefault: Boolean!
+  "托盘类型,最大长度:3"
+  palletType: String! @default(value: "P1")
+  "托盘皮重,最大长度:(10,3)"
+  palletTare: Float!
+  "托盘皮重单位,最大长度:4"
+  palletTareUnit: String! @dictionary(type: MASS_UNIT2)
+  "托盘标模板,最大长度:30"
+  palletLabelModel: String
+  "容器数量/托盘,最大长度:(5,0)"
+  containerNumber: Int!
+  "容器类型:最大长度:3"
+  containerType: String! @default(value: "C1")
+  "容器皮重,最大长度:(10,3)"
+  containerTare: Float!
+  "容器皮重单位,最大长度:4"
+  containerTareUnit: String! @dictionary(type: MASS_UNIT2)
+  "容器标模板,最大长度:30"
+  containerLabelModel: String
+  "容器容量,最大长度:(10,3)"
+  containerMass: Float!
+  "二次包装方式:最大长度:200"
+  secondaaryPacking: String
+}
+
+"""
+工单预备容器表:用作工单预标签的容器控制表
+唯一索引:工单号+版本+容器ID
+"""
+type WoContainer {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  # "工单号:最大长度:30"
+  # workOrder: String
+  # "工单版本:最大长度:(2,0)"
+  # version: Int @default(value: 0)
+  "产品编码:最大长度:30"
+  productCode: String
+  "批次号:最大长度:30"
+  lotNo: String
+  "容器类型:最大长度:3"
+  containerType: String
+  "容器序号:最大长度:(4,0)"
+  containerSeq: Int
+  "容器标准容量:最大长度:(10,6)"
+  theoreticalWeight: Float
+  "容器ID:;最大长度:60"
+  containerID: String
+  "标签编码,最大长度:60"
+  label: String
+  "容器皮重"
+  containerTare: Float
+  "容器皮重单位,最大长度:4"
+  containerTareUnit: String
+  "设备编码:最大长度:30"
+  equipmentCode: String
+
+  "该记录所属工单"
+  workOrder: WorkOrder!
+}
+
+"""
+产出记录:记录工单的产出数据.
+"""
+type ProductionOutput {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  # "工单号:最大长度:30"
+  # workOrder: String
+  # "工单版本:最大长度:(2,0)"
+  # version: Int @default(value: 0)
+  "产品编码:最大长度:30"
+  productCode: String
+  "产品名称:最大长度:100"
+  productName: String
+  "批次号:最大长度:30"
+  lotNo: String
+  "产出数量:声明的数量,如果是负产出,则记录负数,最大长度:(10,3)"
+  qty: Float
+  "工作中心:最大长度:30"
+  workCenter: String
+  "工作站:最大长度:30"
+  workStation: String
+
+  "该记录所属工单"
+  workOrder: WorkOrder!
+}
+
+"""
+负产出追溯:记录负产出具体从那个容器减少.
+"""
+type MinusOutputHistory {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  # "工单号:最大长度:30"
+  # workOrder: String
+  # "工单版本:最大长度:(2,0)"
+  # version: Int @default(value: 0)
+  "产品编码:最大长度:30"
+  productCode: String
+  "产品名称:最大长度:100"
+  productName: String
+  "批次号:最大长度:30"
+  lotNo: String!
+  "容器号:最大长度:30"
+  containerID: String!
+  "产出数量:声明的数量,如果是负产出,则记录负数,最大长度:(10,3)"
+  qty: Float
+  # "单位:最大长度:4"
+  # unit: String
+
+  # "工作中心"
+  # workCenter: String
+  # "工作站"
+  # workStation: String
+  
+  #"事务编码:"
+  #transCode: String
+  #"功能编码:"
+  #actionCode: String
+
+  "该记录所属工单"
+  workOrder: WorkOrder!
+}
+
+"""
+工单预备托盘表:用作工单预标签的托盘控制表
+唯一索引:托盘编号
+"""
+type WoPallet {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  # "工单号:最大长度:30"
+  # workOrder: String
+  # "工单版本:最大长度:(2,0)"
+  # version: Int @default(value: 0)
+  "产品编码:最大长度:30"
+  productCode: String
+  "批次号:最大长度:30"
+  lotNo: String
+  "托盘类型:最大长度:3"
+  palletType: String
+  "托盘类型:最大长度:30"
+  palletCode: String @unique
+  "托盘标准容量:最大长度:(10,6)"
+  theoreticalWeight: Float
+  "托盘皮重,最大长度:(10,3)"
+  palletTare: Float
+  "皮重单位,最大长度:4"
+  tareUnit: String
+  "标签编码,最大长度:60"
+  label: String
+  "设备编码:最大长度:30"
+  equipmentCode: String
+
+  "该记录所属工单"
+  workOrder: WorkOrder!
+}
+
+"""
+生产子批次信息:副产品生产声明使用
+唯一索引:工单号+版本+物料编码+批次号+容器ID
+"""
+type MfgSubLot {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  # "工单号:最大长度:30"
+  # workOrder: String
+  # "工单版本:最大长度:(2,0)"
+  # version: Int @default(value: 0)
+  "产品编码:最大长度:30"
+  productCode: String
+  "批次号:最大长度:30"
+  lotNo: String
+  "阶段,最大长度:4"
+  phase: String
+  "次序,最大长度:4"
+  step: String
+  "剂量,最大长度:(2,0)"
+  dosage: Int
+  "容器号:最大长度:30"
+  containerID: String
+  "产出数量:声明的数量,如果是负产出,则记录负数,最大长度:(10,3)"
+  qty: Float
+  "单位:最大长度:4"
+  unit: String
+
+  #"事务编码:"
+  #transCode: String
+  #"功能编码:"
+  #actionCode: String
+
+  "该记录所属工单"
+  workOrder: WorkOrder!
+}
+
+"""
+拒绝声明记录表:
+"""
+type WoReject {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  # "工单号:最大长度:30"
+  # workOrder: String
+  # "工单版本:最大长度:(2,0)"
+  # version: Int @default(value: 0)
+  "物料编码:最大长度:30"
+  materialCode: String
+  # "批次号:最大长度:30"
+  # lotNo: String
+  "阶段,最大长度:4"
+  phase: String
+  "次序,最大长度:4"
+  step: String
+  "剂量,最大长度:(2,0)"
+  dosage: Int
+  "数量:"
+  qty: Float
+
+  "该记录所属工单"
+  workOrder: WorkOrder!
+}
+
+"""
+重用声明记录表:
+"""
+type WoReuse {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  # "工单号:最大长度:30"
+  # workOrder: String
+  # "工单版本:最大长度:(2,0)"
+  # version: Int @default(value: 0)
+  "物料编码:最大长度:30"
+  materialCode: String
+  "批次号:最大长度:30"
+  lotNo: String
+  "数量:"
+  qty: Float
+
+  "该记录所属工单"
+  workOrder: WorkOrder!
+}
