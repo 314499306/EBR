@@ -1,0 +1,194 @@
+"""
+批次信息
+唯一索引: lotNo + materialCode
+"""
+type Lot {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  "批次号:由物料接收/生产声明等业务创建,最大长度:30"
+  lotNo: String!
+  "物料编码,最大长度:30"
+  materialCode: String!
+  "物料名称,最大长度:100"
+  materialName: String!
+
+  "批次状态: 初始状态来自物料基础信息批次设置中的接收状态,最大长度:30"
+  status: LotStatus!
+  "供应商编码:接收批次的供应商编码,最大长度:30"
+  supplierCode: Supplier @relation(link: INLINE)
+  "供应商批号:接收批次的供应商批次号,最大长度:30"
+  supplierLot: String
+
+  "取样状态:初始状态依据物料的基础设置的取样规则.如果设置为每个容器都不需要取样,那么默认就是已取样,否则为即将取样,最大长度:30"
+  samplingStatus: LotSampleStatus!
+
+  "接收时间,默认显示格式与精度要求:YYYY-MM-DD"
+  receiptDate: DateTime @systemDate
+  "取样时间,默认显示格式与精度要求:YYYY-MM-DD"
+  samplingDate: DateTime @systemDate
+  "分析时间:默认为接收时间,在没取样前不能修改,取样后,可手动填写.不能大于LDU时间和有效期,默认显示格式与精度要求:YYYY-MM-DD"
+  analysisDate: DateTime
+  "分析编号:取样分析结果编码,手动录入,来自分析报告"
+  analysisNo: String
+  "过期时间:初始值为物料接收时间 + 有效时间（初始值来自物料,取样后,可手动修改）计算得出; 注意:这个时间必须大于LDU时间,默认显示格式 YYYY-MM-DD"
+  expiryDate: DateTime
+  "限制使用时间:LDU时间; 初始值为分析时间 +  分析有效期（初始值来自物料,取样后,可手动修改）计算得出;必须大于分析时间,小于过期时间; 修改分析日期,LDU时间会重新计算,默认显示格式 YYYY-MM-DD"
+  lduDate: DateTime
+  "决定时间: 批准, 有条件批准,驳回的时间,默认显示格式与精度要求:YYYY-MM-DD"
+  decisionDate: DateTime @systemDate
+
+  "效价1:效价1的值,初始值来自基础物料,如果有取样规则,取样后,根据分析报告参数可以手动修改,最大长度:(10,3)"
+  potencyValue1: Float
+  "效价2:效价2的值,来自物料,最大长度:(10,3)"
+  potencyValue2: Float
+  "密度:初始值来自基础物料,如果有取样规则,取样后,根据分析报告参数可以手动修改,最大长度:(10,3)"
+  density: Float
+
+  "批次备注:核准批次接收时,填写核准说明/重取样的说明. 允许编辑,最大长度:400"
+  comment: String
+  "容器数量: 托盘包装的,汇总所有托盘上的容器总数,容器包装的汇总容器个数,最大长度:(10,0)"
+  containerCount: Int
+  # "单位成本:初始值来自基础物料,可修改"
+  # cost: Float @default(value: 0)
+
+  "最小称量量: 概念同最小包装量, 最小称量量充当称量的单位量; 在满足效价2不为N,库存单位为un或者kn并且无取样规则的三个条件下,才可以手动输入,最大长度:(10,3)"
+  unitaryWeight: Float
+  "最小称量量单位:质量单位,最大长度:4"
+  unitaryWeightUnit: String
+
+  "专论:药典,最大长度:30"
+  monograph: Monograph
+
+  "批记录编码,最大长度:30"
+  brCode: String
+
+  Receipts: [Receipt!]
+}
+
+"""
+批次接收:
+唯一索引: site + receiptType + orderNumber + seqNo
+"""
+type Receipt {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  "接收事务的类型,系统字典表ReceiptType,本地接收为Local,最大长度:30"
+  receiptType: String! @dictionary(type: RECEIPT_TYPE) @default(value: "Local")
+  "订单号,最大长度:30"
+  orderNumber: String!
+  "次序号,最大长度:5"
+  seqNo: String!
+  "计划接收日期,默认显示格式与精度要求:YYYY-MM-DD"
+  receiptPlanDate: DateTime!
+  "接收日期,默认显示格式与精度要求:YYYY-MM-DD"
+  receiptDate: DateTime @systemDate
+  "取消日期,默认显示格式与精度要求:YYYY-MM-DD"
+  cancelDate: DateTime @systemDate
+  "接收状态,最大长度:30"
+  status: ReceiptStatus!
+  "是否已取样:"
+  isSampled: Boolean @default(value: false)
+
+  "供应商批号:外部供应商自己的物料批次号,最大长度:30"
+  supplierLot: String!
+  "供应商编码:来自供应商基础数据,最大长度:30"
+  supplierCode: Supplier! @relation(link: INLINE)
+  # "供应商名称:根据编码获取"
+  # supplierName: String
+
+  "厂区:系统查询当前工站的工作中心的位置所属厂区获得,最大长度:10"
+  site: String!
+  "存放的区域:接收时该批次物料存储的区域,系统查询当前工站的工作中心的位置所属区域获得,最大长度:10"
+  area: String
+
+  "批次号,最大长度:30"
+  lotNo: String!
+  "物料编码,最大长度:30"
+  materialCode: String!
+  "物料名称,最大长度:100"
+  materialName: String!
+
+  "接收数量,最大长度:(10,6)"
+  qty: Float!
+  "存储类型,最大长度:1"
+  stockType: StockType @default(value: P)
+  "已接收托盘数,最大长度:(10,0)"
+  palletQty: Int
+  "首容器序号,最大长度:(10,0)"
+  firstContainerSeq: Int
+  "尾容器序号,最大长度:(10,0)"
+  lastContainerSeq: Int
+
+  # "批次参考值"
+  # refLot: String
+
+  ReceiptHistories: [ReceiptHistory!]
+}
+
+"""
+批次接收台账:
+唯一索引: site + receiptType + orderNumber + seqNo
+"""
+type ReceiptHistory {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  "厂区,最大长度:10"
+  site: String!
+  "接收事务的类型,最大长度:30"
+  receiptType: String!
+  "订单号,最大长度:30"
+  orderNumber: String!
+  "次序号,最大长度:5"
+  seqNo: String!
+  "物料编码,最大长度:30"
+  materialCode: String!
+  "物料名称,最大长度:100"
+  materialName: String!
+  "接收时间,默认显示格式与精度要求:YYYY-MM-DD"
+  receiptDate: DateTime! @systemDate
+  "接收数量,最大长度:(10,6)"
+  qty: Float!
+  "批次号,最大长度:30"
+  lotNo: String!
+  "供应商批号,最大长度:30"
+  supplierLot: String!
+  "供应商编码,最大长度:30"
+  supplierCode: String!
+  "供应商名称,最大长度:100"
+  supplierName: String
+  "存放的区域,最大长度:10"
+  area: String
+  "已接收托盘数,最大长度:(10,0)"
+  palletQty: Int
+  "首托盘编号,最大长度:(10,0)"
+  firstContainerSeq: Int
+  "尾托盘编号,最大长度:(10,0)"
+  lastContainerSeq: Int
+}
