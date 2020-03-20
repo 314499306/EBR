@@ -1,0 +1,273 @@
+"""
+工单信息
+workOrder+version 为唯一索引
+"""
+type WorkOrder {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  "工单号:系统生成,规则为WO+8位数字序列,最大长度:30"
+  workOrder: String!
+  "版本号:非修订工单的版本全部为0,最大长度:(2,0)"
+  version: Int! @default(value: 0)
+  "产品编码:指定处方后,使用处方上的产品编码,不可编辑,最大长度:30"
+  productCode: String
+  "产品名称:使用处方上的产品名称,不可编辑,最大长度:100"
+  productName: String
+  "批次号:系统自动生成,一个lot只能对应一个WO;规则为:LOT+7位数字序列,最大长度:30"
+  lotNo: String
+  "状态,最大长度:1"
+  status: OrderStatus! @default(value: M)
+  "工单数量:默认值为处方数量（单一处方:1;定量处方:处方的参考数量）,可编辑,最大长度:(10,3)"
+  qty: Float!
+  "单位,默认为处方上参考数量的单位,可编辑;如该处方指定了产品,则需要和产品称量单位兼容,最大长度:4"
+  unit: String!
+  "优先级,最大长度:2"
+  priority: String
+  # "工单类型"
+  # orderType: [OrderType!]!
+  "稳定性:不可编辑;工单种类为处方工单时,固定值为true;其他种类的工单固定值为false"
+  stability: Boolean @default(value: true)
+
+  #当处方单位类型为Q,则该处方为定量处方,参考数量单位只能为单一单位.创建工单时,工单的默认数量为参考数量,工单单个物料的重量计算为:工单量*处方等价量/处方参考量
+  #当处方单位类型为U,则该处方为单一处方,参考数量单位只能为定量单位.创建工单时,工单的默认数量为1,工单等价重量计算为:工单量*处方等价量/1
+  "称量当量:统计值,不可修改,通过处方上定义的称量当量*系数计算得出,最大长度:(10,3) "
+  equivalentWeigh: Float
+  "称量当量单位:来自处方,不可编辑,最大长度:4"
+  equivalentWeighUnit: String!
+  # E<Q<C<A,即TEST<QUARANTINE<CONDITIONALLY_APPROVED<APPROVED
+  # 设置每一个物料的最低批次状态,当工单进行称量物料的时候,会筛选大于该状态的所有批次物料.如:批次接受模块时有P(E),P(Q),P(C),P(A)物料P有四个不同批次级别的4批.
+  # 处方中配置了物料P,当我创建工单时,设置最低批次状态为Q,那么当称量物料P时候,会出现所有上面描述的4个批次的物料P,但是只有大于等于Q状态的可选,P(E)致灰色,不可称量
+  "总体状态（批次级别）:称量时,控制组分物料的最低可用级别,最大长度:30"
+  lotRank: LotStatus! @default(value: APPROVED)
+  "工单种类,最大长度:1"
+  orderCategory: OrderCategory!
+  "ERP下发时间,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  erpSendDate: DateTime @systemDate
+  "发布时间:当前日期<发布日期<PI有效期,默认显示格式与精度要求:YYYY-MM-DD HH24:MI:SS"
+  releaseDate: DateTime @systemDate
+  "工单备注,最大长度:400"
+  message: String
+  "MI编码:工单发布时,选择,最大长度:30"
+  miCode: String
+  "MI版本:工单发布时,选择,最大长度:(2,0)"
+  miVersion: Int
+
+  "工单物料:工单发布时生成"
+  orderMaterials: [OrderMaterial!]
+  # "工单操作时间记录"
+  # orderStatusHistory: [OrderStatusHistory!]!
+  "处方工单关系:工单创建完成时生成;工单都可以有工单物料清单,但只有处方工单才有处方信息"
+  orderFormulaMap: OrderFormulaMap @relation(link: TABLE)
+  "工单工作中心"
+  orderWorkCenters: [WorkCenter!]
+  "工单预标签声明容器"
+  woContainer: [WoContainer!]
+  "工单预标签声明托盘"
+  woPallet: [WoPallet!]
+  "产出记录"
+  ProductionOutputs: [ProductionOutput!]
+  "负产出追溯"
+  MinusOutputHistories: [MinusOutputHistory!]
+}
+
+"""
+工单物料:该表数据依据工单、物料、处方信息,在工单创建时生成
+处方种类（单一或定量）只影响处方类别的工单创建,单一处方:处方数量为1;定量处方:处方数量=处方参考数量
+工单+阶段+次序为唯一索引
+"""
+type OrderMaterial {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  "阶段:来自处方,不可编辑,最大长度:4"
+  phase: String!
+  "次序:来自处方,不可编辑,最大长度:4"
+  step: String!
+  "物料编码:来自处方,不可编辑,最大长度:30"
+  materialCode: String!
+  "物料名称:来自处方,不可编辑,最大长度:100"
+  materialName: String
+  "单位:组分在处方中使用的单位,不可编辑,最大长度:4"
+  unit: String
+  "库存单位:来自物料,不可编辑,最大长度:4"
+  stockUnit: String
+  "物料批次:处方工单,不使用该字段,最大长度:30"
+  lot: String
+
+  "剂量:固定值1,最大长度:(2,0)"
+  dosage: Int @default(value: 1)
+  # "剂量数"
+  # dosageQty: Int
+
+  "效价类型1:来自物料,不可编辑,最大长度:1"
+  potencyType1: String
+  "效价类型1的值:来自物料,不可编辑,最大长度:(10,3)"
+  potencyValue1: Float
+
+  "允许偏差值:默认值来自物料的称量允许偏差,可在创建工单时修改,最大长度:(10,3)"
+  tolerance: Float
+  "默认称量模式:来自物料设定,可在创建工单时修改,最大长度:30"
+  weighModel: WeightMode
+
+  #当处方单位类型为Q,则该处方为定量处方,参考数量单位只能为单一单位.创建工单时,工单的默认数量为参考数量,工单单个物料的重量计算为:工单数量*处方物料重量/参考量
+  #当处方单位类型为U,则该处方为单一处方,参考数量单位只能为定量单位.创建工单时,工单的默认数量为1,工单单个物料的重量计算为:工单数量*处方物料的重量/1
+  "需称量的总量(折算前):理论值,最大长度:(10,3)"
+  totalStdQty: Float
+  "已称量量(折算后):统计值,多次称量的结果,最大长度:(10,3)"
+  weighedActualQty: Float
+  "待称量量(折算后):统计值,称量时自动换算的:待称量=工单处方量*物料效价/批次效价-已称量的量,最大长度:(10,3)"
+  remainActualQty: Float
+  "待称量量(折算前):称量时自动换算的:剩余量=总量-已称量的量*批次效价/物料效价,最大长度:(10,3)"
+  remainStdQty: Float
+
+  "称量单位:使用处方组分的单位,按规则转换得出,不可编辑,最大长度:4"
+  weighUnit: String
+  "补偿器,可编辑,最大长度:1"
+  compensateur: CompensateurType @default(value: N)
+
+  #如果设置Y,当工单数量变化时,该物料数据不参与计算.
+  "是否固定数量:来自处方,不可编辑"
+  isFixedQty: Boolean @default(value: false)
+  "是否单一批次:来自处方,不可编辑"
+  isUniqueLot: Boolean @default(value: false)
+  "是否使用效价:来自处方,不可编辑"
+  isPotency: Boolean!
+  "工作中心编码:来自物料,不可编辑,最大长度:30"
+  workCenter: String
+  "是否称量间称量:来自处方,只在源值为Y时,可在创建工单时可修改"
+  isWeightingWeight: Boolean!
+  "是否车间称量:来自处方,只在源值为Y时,可在创建工单时可修改"
+  isMfgWeight: Boolean!
+  "是否包装间称量:来自处方,只在源值为Y时,可在创建工单时可修改"
+  isPackWeight: Boolean!
+  "批次接收状态:默认使用处方头表上的总体状态,可编辑,最大长度:30"
+  lotRank: LotStatus!
+  "集中状态,称量后集中,最大长度:1"
+  reconcilState: ActionState
+  "集中状态2,投料前集中,最大长度:1"
+  reconcilState2: ActionState
+  "混料状态,最大长度:1"
+  mixingState: ActionState
+
+  "称量间称量次数:统计值,最大长度:(4,0)"
+  weighingWeighCount: Int
+  "车间称量次数:统计值,最大长度:(4,0)"
+  mfgWeighCount: Int
+  "包装间称量次数:统计值,最大长度:(4,0)"
+  packWeighCount: Int
+
+  # "是否可称量:"
+  # isCanWeigh: Boolean @default(value: true)
+
+  "物料的称量状态:,最大长度:1"
+  weighStatus: WeighStatus
+
+  "该物料所属工单"
+  workOrder: WorkOrder!
+  # "物料顺序号:"
+  # materialSeq: Int
+
+  # "RFID扫码集中"
+  # rfid: ActionState
+  "称量历史 相同的物料允许称量多次"
+  weighHistories: [WeighHistory!]
+  "称量结果"
+  weighResults: [WeighSummary!]
+}
+
+"""
+处方工单关系
+"""
+type OrderFormulaMap {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+  "创建人ID,最大长度:30"
+  createUser: String!
+  "修改人ID,最大长度:30"
+  updateUser: String!
+
+  # "工单号"
+  # workOrder: String!
+  # "工单版本"
+  # workOrderVersion: Int!
+  "处方编码,最大长度:30"
+  formulaCode: String!
+  "处方版本,最大长度:(2,0)"
+  formulaVersion: Int!
+  "处方名称,最大长度:100"
+  formulaName: String!
+  "处方类型,最大长度:1"
+  formulaType: String!
+
+  "该处方被哪个工单使用"
+  workOrders: [WorkOrder!]
+}
+
+# """
+# 工单操作时间记录表
+# """
+# type OrderStatusHistory {
+#   "ID"
+#   id: ID! @id
+#   "发布人ID"
+#   waitingUser: String
+#   "发布时间"
+#   waitingDate: DateTime@systemDate
+#   "执行人ID"
+#   runingUser: String
+#   "执行时间"
+#   actionId: DateTime@systemDate
+#   "关闭人ID"
+#   closeUser: String
+#   "关闭时间"
+#   closeDate: DateTime@systemDate
+#   "归档人ID"
+#   archivingUser: String
+#   "归档时间"
+#   archivingDate: DateTime@systemDate
+#   "删除人ID"
+#   deleteUser: String
+#   "删除时间"
+#   deleteDate: DateTime@systemDate
+#   "创建人ID"
+#   createUser: String!
+# }
+
+type OrderWorkCenter {
+  "ID"
+  id: ID! @id
+  "创建时间"
+  createdAt: DateTime! @createdAt
+  "修改时间"
+  updatedAt: DateTime! @updatedAt
+
+  "序号:按照工单工作中心列表的顺序1->N,最大长度:(4,0)"
+  seq: Int!
+  "工作中心,工作中心编码,最大长度:30"
+  workCenter: String!
+  # "工站"
+  # workStation: String
+  "该工作中心被哪些工单使用"
+  workOrders: [WorkOrder!]
+}
